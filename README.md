@@ -5,8 +5,7 @@ Problem statement:
     EWU Hospital faces challenges in managing patient records, scheduling appointments, handling staff schedules, and maintaining medical inventories. The distributed nature of current systems makes it difficult for hospital staff to synchronize information efficiently. 
 
 Intended user: 
-    EWU Hospital and any/all of its patients and employees. This includes doctors, nurses, lab technicians, billing staff, system administrators, network managers, patients, and any other employees (janitorial, cafeteria, and general healthcare staff.)
-
+    EWU Hospital and any/all of its patients and employees. This includes doctors, nurses, system administrators, and patients.
 Cause of the issue:
 The cause of the problem is the distributed nature of the system. The incoming data comes from multiple sources and the information is not synchronized efficiently because of this. 
 
