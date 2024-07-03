@@ -6,6 +6,7 @@ Problem statement:
 
 Intended user: 
     EWU Hospital and any/all of its patients and employees. This includes doctors, nurses, system administrators, and patients.
+    
 Cause of the issue:
 The cause of the problem is the distributed nature of the system. The incoming data comes from multiple sources and the information is not synchronized efficiently because of this. 
 
