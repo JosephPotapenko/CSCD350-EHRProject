@@ -1,3 +1,6 @@
+/*****************************
+ JDBC to establish connection to the HealthConnect Database
+ *****************************/
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.sql.Connection;
@@ -9,7 +12,10 @@ public class JDBC {
         try {
             Connection conn = getConnection();
             MyQuery mquery = new MyQuery(conn);
-            System.out.println("Yo it worked");
+            //Test doctor addition
+
+            mquery.insertTestDoctor("johnny123", "password123", "Johnny", "Johnson", "Gynecologist", "509-867-5309", "john1@ewu.com");
+
             conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
