@@ -1,0 +1,14 @@
+version: '3'
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://your-rds-endpoint:3306/your-db-name
+      - SPRING_DATASOURCE_USERNAME=your-db-user
+      - SPRING_DATASOURCE_PASSWORD=your-db-password
+  frontend:
+    build: ./frontend
+    ports:
+      - "80:80"
