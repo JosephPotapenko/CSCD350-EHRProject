@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthConnect Login</title>
+    <link rel="stylesheet" href="login.css">
+    <script src="login.js" defer></script> <!-- Make sure the script is linked -->
+</head>
+<body>
+<div class="container">
+    <form class="login-box"> <!-- Changed from div to form -->
+        <img src="images/ewu_logo.png" alt="HealthConnect Logo" class="logo">
+        <h1>Welcome</h1>
+        <label for="position">Please select position</label>
+        <select id="position" name="position">
+            <option value="" disabled selected>Select an option</option>
+            <option value="patient">Patient</option>
+            <option value="nurse">Nurse</option>
+            <option value="doctor">Doctor</option>
+        </select>
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" placeholder="Enter Email Address" required>
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Enter Password" required>
+        <button type="submit" class="submit-btn">Submit</button>
+        <a href="#" class="forgot-password">Forgot password?</a>
+        <a href="#" class="register-link">New User? Register Here</a>
+    </form>
+</div>
+</body>
+</html>
