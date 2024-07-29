@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/cs350-summer2024-project-dev-oops.iml" filepath="$PROJECT_DIR$/.idea/cs350-summer2024-project-dev-oops.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/backend/healthconnect.iml" filepath="$PROJECT_DIR$/app/backend/healthconnect.iml" />
+    </modules>
+  </component>
+</project>
