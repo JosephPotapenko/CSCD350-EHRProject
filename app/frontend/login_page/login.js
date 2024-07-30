@@ -21,9 +21,17 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             if (response.ok) {
-                const message = await response.text();
-                alert(message); // Display success message
-                window.location.href = '/dashboard'; // Redirect after successful login
+                const role = await response.text();
+                alert('Login successful'); // Display success message
+
+                // Redirect based on role
+                if (role === 'doctor' || role === 'Doctor' || role === 'nurse' || role === 'Nurse') {
+                    window.location.href = '/employeedashboard';
+                } else if (role === 'patient' || role === 'Patient') {
+                    window.location.href = '/patientdashboard';
+                } else {
+                    alert('Unknown role');
+                }
             } else {
                 const error = await response.text();
                 alert(error); // Display error message

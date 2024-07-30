@@ -11,8 +11,11 @@ public class UserAccountService {
     @Autowired
     private UserAccountRepository userAccountRepository;
 
-    public boolean authenticate(String email, String password) {
+    public String authenticate(String email, String password) {
         UserAccount userAccount = userAccountRepository.findByEmail(email);
-        return userAccount != null && userAccount.getPassword().equals(password);
+        if (userAccount != null && userAccount.getPassword().equals(password)) {
+            return userAccount.getRole(); // Return the role of the authenticated user
+        }
+        return null; // Return null if authentication fails
     }
 }
