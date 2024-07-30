@@ -1,7 +1,6 @@
 package com.healthconnect.controller;
 
-import com.healthconnect.model.UserAccount;
-import com.healthconnect.service.UserAccountService; // Assume this service handles authentication
+import com.healthconnect.service.UserAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,11 +14,12 @@ public class LoginController {
 
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestParam String email, @RequestParam String password) {
-        boolean authenticated = userAccountService.authenticate(email, password); // Implement this method
-        if (authenticated) {
-            return ResponseEntity.ok("Login successful");
+        String role = userAccountService.authenticate(email, password); // Get the user role if authenticated
+        if (role != null) {
+            return ResponseEntity.ok(role); // Return the role on successful authentication
         } else {
             return ResponseEntity.status(401).body("Invalid credentials");
         }
     }
 }
+
