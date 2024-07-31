@@ -26,9 +26,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // Redirect based on role
                 if (role === 'doctor' || role === 'Doctor' || role === 'nurse' || role === 'Nurse') {
-                    window.location.href = '/employeedashboard';
+                    window.location.href = 'http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/employeedashboard';
                 } else if (role === 'patient' || role === 'Patient') {
-                    window.location.href = '/patientdashboard';
+                    window.location.href = 'http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/patient_home_page/patienthomepage.html';
                 } else {
                     alert('Unknown role');
                 }

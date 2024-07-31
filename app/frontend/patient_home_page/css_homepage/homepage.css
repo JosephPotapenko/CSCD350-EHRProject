@@ -1,0 +1,96 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+header {
+    background-color: white;
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.logo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.logo img {
+    height: 50px;
+    margin-right: 10px;
+}
+.nav-buttons, .additional-buttons {
+    display: flex;
+    gap: 10px;
+}
+.nav-buttons {
+    margin-bottom: 20px; /* Add white space between nav-buttons and additional-buttons */
+}
+.nav-buttons button, .additional-buttons button {
+    background-color: #800000;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.nav-buttons button:hover, .additional-buttons button:hover {
+    background-color: #600000;
+}
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.hero {
+    width: 100%;
+    max-height: 400px;
+    overflow: hidden;
+}
+.hero img {
+    width: 100%;
+    height: auto;
+}
+.content {
+    background-color: #800000;
+    color: white;
+    padding: 20px;
+    width: 100%;
+}
+.content .contact-info, .content .quick-links {
+    margin: 20px 0;
+}
+.content .quick-links {
+    display: flex;
+    justify-content: space-around;
+}
+.quick-links div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.quick-links div:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+footer {
+    background-color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-around;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
+footer button {
+    background-color: #800000;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+footer button:hover {
+    background-color: #600000;
+}
