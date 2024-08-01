@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthConnect</title>
+    <link rel="stylesheet" href="doctorHome.css">
+</head>
+<body>
+<header>
+    <div class="header-left">
+        <img src="images/ewu_logo.png" alt="HealthConnect Logo" class="logo">
+        <div class="header-text">
+            <h1>HealthConnect</h1>
+            <p>An EWU Health Service (Employee Portal)</p>
+        </div>
+    </div>
+    <div class="header-right">
+        <button class="header-button" id="employee-login">Employee Login</button>
+        <button class="header-button" id="login">Login</button>
+        <button class="header-button" id="register">Register</button>
+    </div>
+</header>
+<main>
+    <div class="main-image">
+        <img src="images/doc_help.PNG" alt="Healthcare Professionals">
+    </div>
+    <div class="info-section">
+        <div class="contact-info">
+            <h2>How Can We Help You Today?</h2>
+            <p>contact us</p>
+            <p>email: EWUHealthConnect@ewu.edu</p>
+            <p>Phone: 206-123-4567</p>
+            <p>Office Hours:</p>
+            <p>Our office is open from 8:00 a.m. – 5:00 p.m. Monday – Friday, and our phones lines are open from 9:00 a.m. – 4:00 p.m.</p>
+        </div>
+        <div class="services">
+            <div class="service-item">
+                <p>Prescribe Medication</p>
+                <button class="service-button" id="prescribe-medication">></button>
+            </div>
+            <div class="service-item">
+                <p>View Patient Medical Records</p>
+                <button class="service-button" id="view-records">></button>
+            </div>
+            <div class="service-item">
+                <p>Accepted Insurance's</p>
+                <button class="service-button" id="accepted-insurance">></button>
+            </div>
+            <div class="service-item">
+                <p>View Staff Schedule</p>
+                <button class="service-button" id="view-schedule">></button>
+            </div>
+        </div>
+    </div>
+</main>
+<script>
+    document.getElementById("employee-login").addEventListener("click", function() {
+        window.location.href = "http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/login_page/login.html";
+    });
+    document.getElementById("login").addEventListener("click", function() {
+        window.location.href = "http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/login_page/login.html";
+    });
+    document.getElementById("register").addEventListener("click", function() {
+        window.location.href = "http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/register_page/register.html";
+    });
+    document.getElementById("prescribe-medication").addEventListener("click", function() {
+        window.location.href = "http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/prescription_page/prescribeMedication.html";
+    });
+    document.getElementById("view-records").addEventListener("click", function() {
+        window.location.href = "http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/records_page/viewRecords.html";
+    });
+    document.getElementById("accepted-insurance").addEventListener("click", function() {
+        window.location.href = "http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/insurance_page/acceptedInsurance.html";
+    });
+    document.getElementById("view-schedule").addEventListener("click", function() {
+        window.location.href = "http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/schedule_page/viewSchedule.html";
+    });
+</script>
+</body>
+</html>

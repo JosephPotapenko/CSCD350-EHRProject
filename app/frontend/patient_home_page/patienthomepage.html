@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HealthConnect</title>
-    <link rel="stylesheet" href="homepage.css">
+    <link rel="stylesheet" href="patienthomepage.css">
 </head>
 <body>
 <header>
@@ -16,14 +16,14 @@
         </div>
     </div>
     <div class="nav-buttons">
-        <button>Employee Login</button>
-        <button>Login</button>
-        <button>Register</button>
+        <button id="employee-login">Employee Login</button>
+        <button id="login">Login</button>
+        <button id="register">Register</button>
     </div>
     <div class="additional-buttons">
-        <button>Schedule an Appointment</button>
-        <button>View Records</button>
-        <button>Pay My Bill</button>
+        <button id="schedule-appointment">Schedule an Appointment</button>
+        <button id="view-records">View Records</button>
+        <button id="pay-bill">Pay My Bill</button>
     </div>
 </header>
 <main>
@@ -42,24 +42,65 @@
         </div>
         <div class="quick-links">
             <div>
-                <button>Pay My Bill</button>
+                <button id="quick-pay-bill">Pay My Bill</button>
             </div>
             <div>
-                <button>View Medical Records</button>
+                <button id="quick-view-records">View Medical Records</button>
             </div>
             <div>
-                <button>Accepted Insurance</button>
+                <button id="accepted-insurance">Accepted Insurance</button>
             </div>
             <div>
-                <button>Schedule an Appointment</button>
+                <button id="quick-schedule-appointment">Schedule an Appointment</button>
             </div>
         </div>
     </div>
 </main>
 <footer>
-    <button>Schedule an Appointment</button>
-    <button>View Records</button>
-    <button>Pay My Bill</button>
+    <button id="footer-schedule-appointment">Schedule an Appointment</button>
+    <button id="footer-view-records">View Records</button>
+    <button id="footer-pay-bill">Pay My Bill</button>
 </footer>
+<script>
+    document.getElementById("employee-login").addEventListener("click", function() {
+        window.location.href = "employeeLogin.html";
+    });
+    document.getElementById("login").addEventListener("click", function() {
+        window.location.href = "http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/login_page/login.html";
+    });
+    document.getElementById("register").addEventListener("click", function() {
+        window.location.href = "http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/register_page/register.html";
+    });
+    document.getElementById("schedule-appointment").addEventListener("click", function() {
+        window.location.href = "http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/appointment_page/scheduleAppointment.html";
+    });
+    document.getElementById("view-records").addEventListener("click", function() {
+        window.location.href = "http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/records_page/viewRecords.html";
+    });
+    document.getElementById("pay-bill").addEventListener("click", function() {
+        window.location.href = "http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/billing_page/payBill.html";
+    });
+    document.getElementById("quick-pay-bill").addEventListener("click", function() {
+        window.location.href = "http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/billing_page/payBill.html";
+    });
+    document.getElementById("quick-view-records").addEventListener("click", function() {
+        window.location.href = "http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/records_page/viewRecords.html";
+    });
+    document.getElementById("accepted-insurance").addEventListener("click", function() {
+        window.location.href = "http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/insurance_page/acceptedInsurance.html";
+    });
+    document.getElementById("quick-schedule-appointment").addEventListener("click", function() {
+        window.location.href = "http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/appointment_page/scheduleAppointment.html";
+    });
+    document.getElementById("footer-schedule-appointment").addEventListener("click", function() {
+        window.location.href = "http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/appointment_page/scheduleAppointment.html";
+    });
+    document.getElementById("footer-view-records").addEventListener("click", function() {
+        window.location.href = "http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/records_page/viewRecords.html";
+    });
+    document.getElementById("footer-pay-bill").addEventListener("click", function() {
+        window.location.href = "http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/billing_page/payBill.html";
+    });
+</script>
 </body>
 </html>
