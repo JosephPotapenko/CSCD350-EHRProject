@@ -25,9 +25,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert('Login successful'); // Display success message
 
                 // Redirect based on role
-                if (role === 'doctor' || role === 'Doctor' || role === 'nurse' || role === 'Nurse') {
-                    window.location.href = 'http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/employeedashboard';
-                } else if (role === 'patient' || role === 'Patient') {
+                if (role === 'doctor' || role === 'Doctor') {
+                    window.location.href = 'http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/doctor_home_page/doctorhomepage.html';
+                } else if(role === 'nurse' || role === 'Nurse')  {
+                    window.location.href = 'http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/nurse_home_page/nursehomepage.html';
+                }
+                else if (role === 'patient' || role === 'Patient') {
                     window.location.href = 'http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/patient_home_page/patienthomepage.html';
                 } else {
                     alert('Unknown role');

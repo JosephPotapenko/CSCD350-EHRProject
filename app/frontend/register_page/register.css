@@ -1,0 +1,60 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url('images/login_background.jpg'); /* Change to the background image path */
+    background-size: cover;
+    margin: 0;
+}
+
+.register-container {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    padding: 20px 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-container {
+    text-align: center;
+}
+
+.logo {
+    width: 150px;
+    margin-bottom: 20px;
+}
+
+h2 {
+    margin-bottom: 20px;
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+input[type="email"],
+input[type="password"] {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+button {
+    padding: 10px;
+    background-color: #800000; /* Maroon color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #660000; /* Darker maroon on hover */
+}
