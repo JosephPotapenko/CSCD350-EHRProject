@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HealthConnect - Schedule Appointment</title>
+    <title>HealthConnect</title>
     <style>
         /* CSS Styles */
         body {
@@ -11,7 +11,20 @@
             width: 1440px;
             height: 1024px;
             background: #FFFFFF;
-            font-family: 'Libre Baskerville', serif;
+        }
+
+        .container {
+            box-sizing: border-box;
+            position: absolute;
+            width: 766px;
+            height: 725px;
+            left: 337px;
+            top: 260px;
+            background: #D9D9D9;
+            border: 3px solid #67061D;
+            border-radius: 43px;
+            text-align: center;
+            padding-top: 50px;
         }
 
         .header {
@@ -27,7 +40,7 @@
         .logo {
             position: absolute;
             left: 20px;
-            top: 20px;
+            top: 47px;
             width: 110px;
             height: 105px;
         }
@@ -40,7 +53,7 @@
             display: flex;
             align-items: center;
             color: #000000;
-            margin-left: 150px;
+            margin: 0 0 0 150px;
         }
 
         .subtitle {
@@ -58,16 +71,6 @@
             color: #000000;
         }
 
-        .line {
-            position: absolute;
-            width: 1440px;
-            height: 0px;
-            left: 0px;
-            top: 181px;
-            border: 1px solid #000000;
-            transform: rotate(-0.09deg);
-        }
-
         .navbar {
             position: absolute;
             top: 200px;
@@ -78,6 +81,21 @@
             font-size: 24px;
             font-weight: 400;
             align-items: center;
+        }
+
+        .line {
+            position: absolute;
+            width: 1440px;
+            height: 0px;
+            left: 0px;
+            top: 181px;
+            border: 1px solid #000000;
+            transform: rotate(-0.09deg);
+        }
+
+        .navbar img, .container img {
+            width: 33px;
+            height: 31px;
         }
 
         .navbar button {
@@ -98,50 +116,22 @@
             height: 31px;
         }
 
-        .content {
-            position: absolute;
-            top: 250px;
-            left: 50px;
-            width: 1340px;
-            text-align: center;
-        }
-
-        .content h2 {
+        .view-record {
             font-family: 'Libre Baskerville', serif;
-            font-size: 36px;
+            font-size: 34px;
             font-weight: 400;
             color: #000000;
         }
 
-        .content h3 {
+        .instructions {
             font-family: 'Libre Baskerville', serif;
-            font-size: 24px;
+            font-size: 15px;
             font-weight: 400;
             color: #000000;
+            margin-top: 10px;
         }
 
-        .appointment-container {
-            box-sizing: border-box;
-            position: relative;
-            width: 600px;
-            height: 675px;
-            margin: 0 auto;
-            background: #D9D9D9;
-            border: 3px solid #67061D;
-            border-radius: 43px;
-            text-align: center;
-            padding-top: 20px;
-        }
-
-        .appointment-container h4 {
-            font-family: 'Libre Baskerville', serif;
-            font-size: 24px;
-            font-weight: 400;
-            color: #000000;
-            margin-bottom: 10px;
-        }
-
-        .appointment-form {
+        .form {
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -149,27 +139,26 @@
             margin-top: 20px;
         }
 
-        .appointment-form input,
-        .appointment-form select {
+        .form input {
             width: 339px;
             height: 43px;
             background: #FFFFFF;
             border-radius: 26px;
             padding: 10px;
             font-size: 16px;
-            border: 1px solid #67061D;
         }
 
-        .appointment-form label {
+        .form label {
             font-family: 'Libre Baskerville', serif;
             font-size: 15px;
             font-weight: 400;
             color: #000000;
             align-self: flex-start;
-            margin-left: 20px;
+            margin-left: 200px;
         }
 
         .submit {
+            position: relative;
             width: 107px;
             height: 43px;
             background: #67061D;
@@ -182,7 +171,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            cursor: pointer;
+            margin-top: 20px;
         }
 
         .note {
@@ -206,7 +195,7 @@
 <div class="header">
     <img src="images/ewu_logo.png" alt="EWU Logo" class="logo">
     <h1 class="title">HealthConnect</h1>
-    <div class="subtitle">An EWU Health Service</div>
+    <div class="subtitle">An EWU Health Service </div>
 </div>
 <div class="line"></div>
 <nav class="navbar">
@@ -215,38 +204,24 @@
         <span>Home</span>
     </button>
     <button onclick="window.location.href='http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/billing_page/payBill.html'">
-        <img src="images/moneybag.png" alt="Pay My Bill Icon">
+        <img src="images/moneybag.png" alt="Prescribe Medication Icon">
         <span>Pay My Bill</span>
     </button>
-    <button onclick="window.location.href='http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/patient_records_page/patientrecords.html'">
-        <img src="images/checklist.png" alt="View My Records Icon">
-        <span>View My Records</span>
+    <button onclick="window.location.href='http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/appointment_page/scheduleAppointment.html'">
+        <img src="images/checklist.png" alt="View Staff Schedule Icon">
+        <span>Schedule an Appointment</span>
     </button>
 </nav>
-<div class="content">
-    <h2>Schedule your appointment with us today!</h2>
-    <p>All fields are required unless stated otherwise</p>
-    <div class="appointment-container">
-        <form class="appointment-form">
-            <label for="doctorName">Doctor's Name</label>
-            <select id="doctorName" name="doctorName">
-                <option value="" disabled selected>Select your option</option>
-                <!-- Add options here -->
-            </select>
-            <label for="dayOfWeek">Day of the Week</label>
-            <select id="dayOfWeek" name="dayOfWeek">
-                <option value="" disabled selected>Select your option</option>
-                <!-- Add options here -->
-            </select>
-            <label for="time">Time</label>
-            <select id="time" name="time">
-                <option value="" disabled selected>Select your option</option>
-                <!-- Add options here -->
-            </select>
-            <button type="submit" class="submit">Submit</button>
-        </form>
-        <p>NOTE: THE ARROWS MEAN A DROP DOWN MENU</p>
-    </div>
+<div class="container">
+    <h2 class="view-record">View Your Patient’s Record</h2>
+    <p class="instructions">All fields are required unless stated otherwise</p>
+    <form class="form">
+        <label for="patientName">Patient Name</label>
+        <input type="text" id="patientName" name="patientName">
+        <label for="patientId">Patient ID</label>
+        <input type="text" id="patientId" name="patientId">
+        <button type="submit" class="submit">Submit</button>
+    </form>
 </div>
 </body>
 </html>
