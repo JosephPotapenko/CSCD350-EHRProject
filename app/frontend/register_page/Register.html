@@ -36,11 +36,28 @@
     });
 
     function registerUser(email, password) {
-        // Placeholder function for registration logic
-        console.log("Registering user with email:", email);
-        // After successful registration, redirect to the specified patient home page
-        window.location.href = "http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/healthconnect_home_page/homepage.html";
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "http://localhost:8080/api/users/register", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+        xhr.onload = function () {
+            if (xhr.status >= 200 && xhr.status < 300) {
+                console.log("User registered successfully");
+                window.location.href = "http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/healthconnect_home_page/homepage.html";
+            } else {
+                console.error("Failed to register user:", xhr.responseText);
+                alert('Failed to register user: ' + xhr.responseText);
+            }
+        };
+
+        var params = "username=" + encodeURIComponent(email) +
+            "&email=" + encodeURIComponent(email) +
+            "&password=" + encodeURIComponent(password) +
+            "&role=" + encodeURIComponent("Patient"); // Assuming default role is 'patient'
+
+        xhr.send(params);
     }
+
 </script>
 </body>
 </html>

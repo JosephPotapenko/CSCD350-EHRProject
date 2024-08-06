@@ -21,5 +21,10 @@ public class LoginController {
             return ResponseEntity.status(401).body("Invalid credentials");
         }
     }
+    /*@PostMapping("/register")
+    public ResponseEntity<String> register(@RequestParam String username, @RequestParam String email, @RequestParam String password, @RequestParam String role) {
+        userAccountService.registerNewUser(username, email, password, role);
+        return ResponseEntity.ok("User registered successfully");
+    }*/
 }
 
