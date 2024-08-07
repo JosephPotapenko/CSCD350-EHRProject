@@ -12,8 +12,8 @@ public class Billing {
     private Long billing_id;
 
     @ManyToOne
-    @JoinColumn(name = "patient_id")
-    private Patient patient;
+    @JoinColumn(name = "user_id")
+    private UserAccount userAccount;
 
     private Date billing_date;
     private Date due_date;
@@ -31,12 +31,12 @@ public class Billing {
         this.billing_id = billingId;
     }
 
-    public Patient getPatient() {
-        return patient;
+    public UserAccount getUserAccount() {
+        return userAccount;
     }
 
-    public void setPatient(Patient patient) {
-        this.patient = patient;
+    public void setUserAccount(UserAccount userAccount) {
+        this.userAccount = userAccount;
     }
 
     public Date getBilling_date() {

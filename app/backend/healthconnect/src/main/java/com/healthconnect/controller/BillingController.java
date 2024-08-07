@@ -2,6 +2,7 @@ package com.healthconnect.controller;
 
 import com.healthconnect.model.Billing;
 import com.healthconnect.model.PaymentRequest;
+import com.healthconnect.model.UserAccount;
 import com.healthconnect.service.BillingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +24,7 @@ public class BillingController {
     }
 
     @GetMapping("/patient/{userId}")
-    public ResponseEntity<List<Billing>> getBillsByPatientId(@PathVariable Long userId) {
+    public ResponseEntity<List<Billing>> getBillsByPatientId(@PathVariable UserAccount userId) {
         List<Billing> billingList = billingService.getBillsByPatientId(userId);
         return ResponseEntity.ok(billingList);
     }

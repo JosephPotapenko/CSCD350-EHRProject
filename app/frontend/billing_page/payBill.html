@@ -202,7 +202,7 @@
             });
         });
 
-        function fetchBillInfo() {
+       /* function fetchBillInfo() {
             // Retrieve userId from local storage
             const userId = localStorage.getItem('userId');
 
@@ -226,7 +226,7 @@
                 .catch(error => {
                     console.error('Error fetching bill info:', error);
                 });
-            /*// Fetch bill information for the logged-in patient
+            /!*!// Fetch bill information for the logged-in patient
             fetch('http://localhost:8080/billing/patient/${userId}')
                 .then(response => response.json())
                 .then(data => {
@@ -234,7 +234,38 @@
                     document.getElementById('status').textContent = `Status: ${data.status}`;
                     document.getElementById('billing_id').value = data.billingId;
                 })
-                .catch(error => console.error('Error fetching bill info:', error));*/
+                .catch(error => console.error('Error fetching bill info:', error));*!/
+        }*/
+        function fetchBillInfo() {
+            // Retrieve userId from local storage
+            const userId = localStorage.getItem('userId');
+
+            if (!userId) {
+                console.error('User ID not found in local storage');
+                return;
+            }
+            // Fetch bill information for the logged-in patient
+            fetch(`http://localhost:8080/billing/patient/${userId}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (Array.isArray(data) && data.length > 0) {
+                        const bill = data[0]; // Access the first element of the array
+                        console.log('Fetched bill data:', bill); // Log the response data for verification
+                        document.getElementById('billAmount').textContent = `Amount Due: $${bill.amount}`;
+                        document.getElementById('billStatus').textContent = `Status: ${bill.status}`;
+                        document.getElementById('billing_id').value = bill.billing_id;
+                    } else {
+                        console.error('No bill data found');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching bill info:', error);
+                });
         }
 
         function payBill() {
