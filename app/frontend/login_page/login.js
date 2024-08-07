@@ -18,13 +18,41 @@ document.addEventListener('DOMContentLoaded', () => {
                     password: password
                 })
             });
-
+            /*
             if (response.ok) {
                 const role = await response.text();
                 alert('Login successful'); // Display success message
 
                 // Store the user role in local storage
                 localStorage.setItem('userRole', role);
+
+
+            /*if (response.ok) {
+                // Assuming the response is JSON with properties 'role' and 'user_id'
+                const data = await response.json(); // Get the response as JSON
+
+                const role = data.role; // Extract the user role
+                const user_id = data.user_id; // Extract the user ID
+
+                alert('Login successful'); // Display success message
+
+                // Store the user role and ID in local storage
+                localStorage.setItem('userRole', role);
+                localStorage.setItem('userId', user_id);
+*/
+            if (response.ok) {
+                // Get the response as JSON
+                const data = await response.json();
+
+                // Extract role and user ID from the JSON response
+                const role = data.role;
+                const user_id = data.userId; // Note: Ensure 'userId' matches the key from your server response
+
+                alert('Login successful'); // Display success message
+
+                // Store the user role and ID in local storage
+                localStorage.setItem('userRole', role);
+                localStorage.setItem('userId', user_id);
 
                 // Redirect based on role
                 if (role === 'doctor' || role === 'Doctor') {

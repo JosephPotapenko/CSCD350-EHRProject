@@ -2,6 +2,7 @@ package com.healthconnect.service;
 
 import com.healthconnect.model.UserAccount;
 import com.healthconnect.repository.UserAccountRepository;
+import com.healthconnect.model.LoginResponse;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,14 +19,22 @@ public class UserAccountService {
 
     private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-    public String authenticate(String email, String password) {
+    public LoginResponse authenticate(String email, String password) {
+        UserAccount userAccount = userAccountRepository.findByEmail(email);
+        if (userAccount != null && passwordEncoder.matches(password, userAccount.getPassword())) {
+            return new LoginResponse(userAccount.getRole(), userAccount.getUserId()); // Return role and user ID
+        }
+        return null; // Return null if authentication fails
+    }
+
+    /*public String authenticate(String email, String password) {
         UserAccount userAccount = userAccountRepository.findByEmail(email);
         if (userAccount != null && passwordEncoder.matches(password, userAccount.getPassword())) {
             return userAccount.getRole(); // Return the role of the authenticated user
         }
         return null; // Return null if authentication fails
     }
-
+*/
     public void registerNewUser(String username, String email, String rawPassword, String role) {
         String encodedPassword = passwordEncoder.encode(rawPassword);
         UserAccount newUser = new UserAccount(username, encodedPassword, role, email);

@@ -124,7 +124,7 @@
             box-sizing: border-box;
             position: relative;
             width: 500px;
-            height: 675px;
+            height: 750px;
             margin: 0 auto;
             background: #D9D9D9;
             border: 3px solid #67061D;
@@ -182,8 +182,122 @@
             justify-content: center;
             cursor: pointer;
         }
+        .bill-info {
+            margin-bottom: 20px;
+            text-align: center;
+            font-family: 'Libre Baskerville', serif;
+            font-size: 20px;
+            font-weight: 400;
+            color: #000000;
+        }
 
     </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetchBillInfo();
+
+            document.querySelector('.bill-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                payBill();
+            });
+        });
+
+       /* function fetchBillInfo() {
+            // Retrieve userId from local storage
+            const userId = localStorage.getItem('userId');
+
+            if (!userId) {
+                console.error('User ID not found in local storage');
+                return;
+            }
+            // Fetch bill information for the logged-in patient
+            fetch(`http://localhost:8080/billing/patient/${userId}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    document.getElementById('amount').textContent = `Amount Due: $${data.amount}`;
+                    document.getElementById('status').textContent = `Status: ${data.status}`;
+                    document.getElementById('billing_id').value = data.billingId;
+                })
+                .catch(error => {
+                    console.error('Error fetching bill info:', error);
+                });
+            /!*!// Fetch bill information for the logged-in patient
+            fetch('http://localhost:8080/billing/patient/${userId}')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('amount').textContent = `Amount Due: $${data.amount}`;
+                    document.getElementById('status').textContent = `Status: ${data.status}`;
+                    document.getElementById('billing_id').value = data.billingId;
+                })
+                .catch(error => console.error('Error fetching bill info:', error));*!/
+        }*/
+        function fetchBillInfo() {
+            // Retrieve userId from local storage
+            const userId = localStorage.getItem('userId');
+
+            if (!userId) {
+                console.error('User ID not found in local storage');
+                return;
+            }
+            // Fetch bill information for the logged-in patient
+            fetch(`http://localhost:8080/billing/patient/${userId}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (Array.isArray(data) && data.length > 0) {
+                        const bill = data[0]; // Access the first element of the array
+                        console.log('Fetched bill data:', bill); // Log the response data for verification
+                        document.getElementById('billAmount').textContent = `Amount Due: $${bill.amount}`;
+                        document.getElementById('billStatus').textContent = `Status: ${bill.status}`;
+                        document.getElementById('billing_id').value = bill.billing_id;
+                    } else {
+                        console.error('No bill data found');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching bill info:', error);
+                });
+        }
+
+        function payBill() {
+            const billingId = document.getElementById('billingId').value;
+            const cardName = document.getElementById('cardName').value;
+            const cardNumber = document.getElementById('cardNumber').value;
+            const expiryDate = document.getElementById('expiryDate').value;
+            const cvv = document.getElementById('cvv').value;
+
+            const paymentDetails = {
+                billingId,
+                cardName,
+                cardNumber,
+                expiryDate,
+                cvv
+            };
+
+            fetch('http://localhost:8080/billing/pay', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(paymentDetails)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    alert('Payment successful');
+                    fetchBillInfo(); // Refresh the bill info
+                })
+                .catch(error => console.error('Error paying bill:', error));
+        }
+    </script>
 </head>
 <body>
 <div class="header">
@@ -212,6 +326,10 @@
     <div class="bill-container">
         <h4>View your bill online</h4>
         <p>All fields are required unless stated otherwise</p>
+        <div class="bill-info">
+            <p id="billAmount">Amount Due: $0.00</p>
+            <p id="billStatus">Status: Unknown</p>
+        </div>
         <form class="bill-form">
             <label for="cardName">Cardholder's Name</label>
             <input type="text" id="cardName" name="cardName">
