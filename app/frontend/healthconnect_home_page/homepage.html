@@ -5,20 +5,117 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HealthConnect</title>
     <link rel="stylesheet" href="homepage.css">
+    <style>
+        /* General Body Styles */
+        body {
+            font-family: 'Libre Baskerville', serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header Styles */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid #000000;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .header-left img {
+            width: 110px;
+            height: 70px;
+        }
+
+        .header-text {
+            margin-left: 20px;
+        }
+
+        .header-text h1 {
+            margin: 0;
+            font-size: 64px;
+            font-weight: 400;
+        }
+
+        .header-text p {
+            margin: 0;
+            font-size: 20px;
+        }
+
+        .header-right {
+            display: flex;
+            gap: 10px;
+        }
+
+        .header-button {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 18px;
+            padding: 10px 20px;
+            background-color: #67061D;
+            color: #FFFFFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .header-button:hover {
+            background-color: #500515; /* Darker red on hover */
+        }
+
+        /* Style for the centered overlay box */
+        .nav-buttons-overlay {
+            position: fixed; /* Fixed position to overlay on everything else */
+            top: 50%; /* Center vertically */
+            left: 50%; /* Center horizontally */
+            transform: translate(-50%, -50%); /* Adjust for center alignment */
+            background-color: rgba(244, 244, 244, 0.9); /* Slightly transparent background */
+            padding: 40px; /* Increased padding for a larger box */
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow for better visibility */
+            z-index: 1000; /* High z-index to ensure it overlays other content */
+            width: 500px; /* Set a fixed width for uniform buttons */
+            text-align: center; /* Center text and buttons */
+        }
+
+        /* Style for buttons in the overlay */
+        .nav-buttons-overlay button {
+            display: block;
+            width: 100%; /* Full width of the container */
+            padding: 20px; /* Increase padding for larger buttons */
+            font-size: 20px; /* Increase font size for larger text */
+            background-color: #67061D; /* Button color */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 15px 0; /* Space between buttons */
+        }
+
+        .nav-buttons-overlay button:last-child {
+            margin-bottom: 0;
+        }
+
+        .nav-buttons-overlay button:hover {
+            background-color: #500515; /* Darker red on hover */
+        }
+    </style>
 </head>
 <body>
 <header>
-    <div class="logo">
+    <div class="header-left">
         <img src="images/ewu_logo.png" alt="EWU Logo">
-        <div>
+        <div class="header-text">
             <h1>HealthConnect</h1>
             <p>An EWU Health Service</p>
         </div>
     </div>
-    <div class="nav-buttons">
-        <button id="employee-login">Employee Login</button>
-        <button id="login">Login</button>
-        <button id="register">Register</button>
+    <div class="header-right">
+
     </div>
 </header>
 <main>
@@ -27,18 +124,27 @@
     </div>
     <div class="content">
         <div class="contact-info">
-            <h2>How Can We Help You Today?</h2>
-            <p>Contact us</p>
+            <h1>How Can We Help You Today?</h1>
+            <h3>Contact us</h3>
             <p>Email: EWUHealthConnect@ewu.edu</p>
             <p>Phone: 206-123-4567</p>
-            <p>Office Hours: Our office is open from 8:00 a.m. – 5:00 p.m.<p>
+            <p>Office Hours: Our office is open from 8:00 a.m. – 5:00 p.m.</p>
         </div>
     </div>
 </main>
 <footer>
 
 </footer>
+
+<!-- Centered overlay buttons -->
+<div class="nav-buttons-overlay">
+    <button class="header-button" id="employee-login">Employee Login</button>
+    <button class="header-button" id="login">Login</button>
+    <button class="header-button" id="register">Register</button>
+</div>
+
 <script>
+    // Header buttons
     document.getElementById("employee-login").addEventListener("click", function() {
         window.location.href = "http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/login_page/login.html";
     });
@@ -46,6 +152,17 @@
         window.location.href = 'http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/login_page/login.html';
     });
     document.getElementById("register").addEventListener("click", function() {
+        window.location.href = "http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/register_page/register.html";
+    });
+
+    // Overlay buttons
+    document.getElementById("employee-login-overlay").addEventListener("click", function() {
+        window.location.href = "http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/login_page/login.html";
+    });
+    document.getElementById("login-overlay").addEventListener("click", function() {
+        window.location.href = 'http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/login_page/login.html';
+    });
+    document.getElementById("register-overlay").addEventListener("click", function() {
         window.location.href = "http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/register_page/register.html";
     });
 </script>

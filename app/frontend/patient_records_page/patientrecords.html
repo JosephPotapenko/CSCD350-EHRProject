@@ -11,6 +11,60 @@
             width: 1440px;
             height: 1024px;
             background: #FFFFFF;
+            font-family: 'Libre Baskerville', serif;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid #000000;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .header-left img {
+            width: 110px;
+            height: 70px;
+        }
+
+        .header-text {
+            margin-left: 20px;
+        }
+
+        .header-text h1 {
+            margin: 0;
+            font-size: 64px;
+            font-weight: 400;
+        }
+
+        .header-text p {
+            margin: 0;
+            font-size: 20px;
+        }
+
+        .header-right {
+            display: flex;
+            gap: 10px;
+        }
+
+        .header-button {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 18px;
+            padding: 10px 20px;
+            background-color: #67061D;
+            color: #FFFFFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .header-button:hover {
+            background-color: #500515;
         }
 
         .container {
@@ -25,50 +79,6 @@
             border-radius: 43px;
             text-align: center;
             padding-top: 50px;
-        }
-
-        .header {
-            position: absolute;
-            width: 1440px;
-            height: 150px;
-            top: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .logo {
-            position: absolute;
-            left: 20px;
-            top: 47px;
-            width: 110px;
-            height: 105px;
-        }
-
-        .title {
-            font-family: 'Inter', sans-serif;
-            font-size: 64px;
-            font-weight: 400;
-            line-height: 100%;
-            display: flex;
-            align-items: center;
-            color: #000000;
-            margin: 0 0 0 150px;
-        }
-
-        .subtitle {
-            position: absolute;
-            width: 761px;
-            height: 20px;
-            left: 147px;
-            top: 132px;
-            font-family: 'Inter', sans-serif;
-            font-size: 20px;
-            font-weight: 400;
-            line-height: 100%;
-            display: flex;
-            align-items: center;
-            color: #000000;
         }
 
         .navbar {
@@ -192,11 +202,20 @@
     </style>
 </head>
 <body>
-<div class="header">
-    <img src="images/ewu_logo.png" alt="EWU Logo" class="logo">
-    <h1 class="title">HealthConnect</h1>
-    <div class="subtitle">An EWU Health Service </div>
-</div>
+<header>
+    <div class="header-left">
+        <img src="images/ewu_logo.png" alt="HealthConnect Logo" class="logo">
+        <div class="header-text">
+            <h1>HealthConnect</h1>
+            <p>An EWU Health Service</p>
+        </div>
+    </div>
+    <div class="header-right">
+        <button class="header-button" id="employee-login">Employee Login</button>
+        <button class="header-button" id="login">Logout</button>
+
+    </div>
+</header>
 <div class="line"></div>
 <nav class="navbar">
     <button onclick="window.location.href='http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/patient_home_page/patienthomepage.html'">
@@ -204,11 +223,11 @@
         <span>Home</span>
     </button>
     <button onclick="window.location.href='http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/billing_page/payBill.html'">
-        <img src="images/moneybag.png" alt="Prescribe Medication Icon">
+        <img src="images/moneybag.png" alt="Pay My Bill Icon">
         <span>Pay My Bill</span>
     </button>
     <button onclick="window.location.href='http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/appointment_page/scheduleAppointment.html'">
-        <img src="images/checklist.png" alt="View Staff Schedule Icon">
+        <img src="images/checklist.png" alt="Schedule an Appointment Icon">
         <span>Schedule an Appointment</span>
     </button>
 </nav>
@@ -223,5 +242,16 @@
         <button type="submit" class="submit">Submit</button>
     </form>
 </div>
+<script>
+    document.getElementById("employee-login").addEventListener("click", function() {
+        window.location.href = "http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/login_page/login.html";
+    });
+    document.getElementById("login").addEventListener("click", function() {
+        window.location.href = "http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/login_page/login.html";
+    });
+    document.getElementById("register").addEventListener("click", function() {
+        window.location.href = "http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/register_page/register.html";
+    });
+</script>
 </body>
 </html>

@@ -13,58 +13,66 @@
             font-family: 'Libre Baskerville', serif;
         }
 
-        .header {
-            position: absolute;
-            width: 1440px;
-            height: 150px;
-            top: 0;
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid #000000;
+        }
+
+        .header-left {
             display: flex;
             align-items: center;
-            justify-content: center;
         }
 
-        .logo {
-            position: absolute;
-            left: 20px;
-            top: 20px;
+        .header-left img {
             width: 110px;
-            height: 105px;
+            height: 70px;
         }
 
-        .title {
-            font-family: 'Inter', sans-serif;
+        .header-text {
+            margin-left: 20px;
+        }
+
+        .header-text h1 {
+            margin: 0;
             font-size: 64px;
             font-weight: 400;
-            line-height: 100%;
-            display: flex;
-            align-items: center;
-            color: #000000;
-            margin-left: 150px;
         }
 
-        .subtitle {
-            position: absolute;
-            width: 761px;
-            height: 20px;
-            left: 147px;
-            top: 132px;
-            font-family: 'Inter', sans-serif;
+        .header-text p {
+            margin: 0;
             font-size: 20px;
-            font-weight: 400;
-            line-height: 100%;
+        }
+
+        .header-right {
             display: flex;
-            align-items: center;
-            color: #000000;
+            gap: 10px;
+        }
+
+        .header-button {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 18px;
+            padding: 10px 20px;
+            background-color: #67061D;
+            color: #FFFFFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .header-button:hover {
+            background-color: #500515;
         }
 
         .line {
             position: absolute;
             width: 1440px;
-            height: 0px;
-            left: 0px;
-            top: 181px;
-            border: 1px solid #000000;
-            transform: rotate(-0.09deg);
+            height: 1px;
+            left: 0;
+            top: 150px;
+            background: #000000;
         }
 
         .navbar {
@@ -124,8 +132,7 @@
             padding: 20px;
         }
 
-        .form input,
-        .form select {
+        .form input {
             width: 90%;
             margin-bottom: 20px;
             padding: 10px;
@@ -155,11 +162,19 @@
     </style>
 </head>
 <body>
-<div class="header">
-    <img src="images/ewu_logo.png" alt="EWU Logo" class="logo">
-    <h1 class="title">HealthConnect</h1>
-    <div class="subtitle">An EWU Health Service (Employee Portal)</div>
-</div>
+<header>
+    <div class="header-left">
+        <img src="images/ewu_logo.png" alt="HealthConnect Logo" class="logo">
+        <div class="header-text">
+            <h1>HealthConnect</h1>
+            <p>An EWU Health Service</p>
+        </div>
+    </div>
+    <div class="header-right">
+        <button class="header-button" id="employee-login">Employee Login</button>
+        <button class="header-button" id="login">Logout</button>
+    </div>
+</header>
 <div class="line"></div>
 <nav class="navbar">
     <button onclick="redirectBasedOnRole()">
@@ -176,20 +191,14 @@
     </button>
 </nav>
 <div class="form-container">
-    <h2>Prescribe/ update patients medication</h2>
+    <h2>Prescribe/Update Patient’s Medication</h2>
     <div class="form">
         <p>All fields are required unless stated otherwise</p>
         <input type="text" placeholder="Patient Name">
-        <select>
-            <option value="" disabled selected>Patient ID</option>
-            <!-- Add dropdown options here and don't be dumbbbb -->
-        </select>
-        <select>
-            <option value="" disabled selected>Medication</option>
-            <!-- Add dropdown options here and don't be dumbbbb -->
-        </select>
+        <input type="text" placeholder="Patient ID">
+        <input type="text" placeholder="Medication">
         <button type="submit">Submit</button>
-        <div class="note">NOTE: THE ARROWS MEAN A DROP DOWN MENU</div>
+        <div class="note">NOTE: THE ABOVE FIELDS ARE REQUIRED</div>
     </div>
 </div>
 <script>
@@ -219,6 +228,13 @@
     function redirectToStaffSchedule() {
         window.location.href = 'http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/schedule_page/viewSchedule.html';
     }
+
+    document.getElementById("employee-login").addEventListener("click", function() {
+        window.location.href = "http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/login_page/login.html";
+    });
+    document.getElementById("login").addEventListener("click", function() {
+        window.location.href = "http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/login_page/login.html";
+    });
 </script>
 </body>
 </html>

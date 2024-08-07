@@ -4,7 +4,83 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HealthConnect Registration</title>
-    <link rel="stylesheet" href="register.css">
+    <style>
+        body {
+            font-family: 'Libre Baskerville', serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: url('images/login_background.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        .register-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+        }
+
+        .form-container {
+            background: rgba(255, 255, 255, 0.8); /* Slightly transparent white background */
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .form-container .logo {
+            width: 350px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        .form-container h2 {
+            font-size: 36px;
+            margin-bottom: 30px;
+        }
+
+        .form-container input {
+            font-size: 24px;
+            padding: 15px;
+            margin-bottom: 20px;
+            width: calc(100% - 30px);
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .form-container button {
+            font-size: 24px;
+            padding: 15px 30px;
+            background-color: #67061D;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .form-container button:hover {
+            background-color: #500515;
+        }
+
+        .form-container a {
+            display: block;
+            margin-top: 10px;
+            font-size: 18px;
+            color: #67061D;
+            text-decoration: none;
+        }
+
+        .form-container a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
 <div class="register-container">
@@ -17,6 +93,7 @@
             <input type="password" id="reenter-password" placeholder="Re-Enter Password" required>
             <button type="submit" id="submit-button">Submit</button>
         </form>
+        <a href="http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/login_page/login.html" class="login-link">Already have an account? Login Here</a>
     </div>
 </div>
 <script>
@@ -43,7 +120,7 @@
         xhr.onload = function () {
             if (xhr.status >= 200 && xhr.status < 300) {
                 console.log("User registered successfully");
-                window.location.href = "http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/healthconnect_home_page/homepage.html";
+                window.location.href = "http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/patient_home_page/patienthomepage.html?_ijt=s8b5lrm6f6p6pgmdk6esu17e21&_ij_reload=RELOAD_ON_SAVE";
             } else {
                 console.error("Failed to register user:", xhr.responseText);
                 alert('Failed to register user: ' + xhr.responseText);
@@ -61,4 +138,3 @@
 </script>
 </body>
 </html>
-

@@ -11,69 +11,68 @@
             width: 1440px;
             height: 1024px;
             background: #FFFFFF;
+            font-family: 'Libre Baskerville', serif;
         }
 
-        .container {
-            box-sizing: border-box;
-            position: absolute;
-            width: 766px;
-            height: 725px;
-            left: 337px;
-            top: 260px;
-            background: #D9D9D9;
-            border: 3px solid #67061D;
-            border-radius: 43px;
-            text-align: center;
-            padding-top: 50px;
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid #000000;
+            background: #FFFFFF;
         }
 
-        .header {
-            position: absolute;
-            width: 1440px;
-            height: 150px;
-            top: 0;
+        .header-left {
             display: flex;
             align-items: center;
-            justify-content: center;
         }
 
-        .logo {
-            position: absolute;
-            left: 20px;
-            top: 47px;
+        .header-left img {
             width: 110px;
-            height: 105px;
+            height: 70px;
         }
 
-        .title {
-            font-family: 'Inter', sans-serif;
+        .header-text {
+            margin-left: 20px;
+        }
+
+        .header-text h1 {
+            margin: 0;
             font-size: 64px;
             font-weight: 400;
-            line-height: 100%;
-            display: flex;
-            align-items: center;
             color: #000000;
-            margin: 0 0 0 150px;
         }
 
-        .subtitle {
-            position: absolute;
-            width: 761px;
-            height: 20px;
-            left: 147px;
-            top: 132px;
-            font-family: 'Inter', sans-serif;
+        .header-text p {
+            margin: 0;
             font-size: 20px;
-            font-weight: 400;
-            line-height: 100%;
-            display: flex;
-            align-items: center;
             color: #000000;
+        }
+
+        .header-right {
+            display: flex;
+            gap: 10px;
+        }
+
+        .header-button {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 18px;
+            padding: 10px 20px;
+            background-color: #67061D;
+            color: #FFFFFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .header-button:hover {
+            background-color: #500515;
         }
 
         .navbar {
             position: absolute;
-            top: 200px;
+            top: 150px;
             left: 50px;
             display: flex;
             gap: 50px;
@@ -86,11 +85,10 @@
         .line {
             position: absolute;
             width: 1440px;
-            height: 0px;
-            left: 0px;
-            top: 181px;
-            border: 1px solid #000000;
-            transform: rotate(-0.09deg);
+            height: 1px;
+            left: 0;
+            top: 180px;
+            background: #000000;
         }
 
         .navbar img, .container img {
@@ -111,9 +109,18 @@
             cursor: pointer;
         }
 
-        .navbar button img {
-            width: 33px;
-            height: 31px;
+        .container {
+            box-sizing: border-box;
+            position: absolute;
+            width: 766px;
+            height: 725px;
+            left: 337px;
+            top: 260px;
+            background: #D9D9D9;
+            border: 3px solid #67061D;
+            border-radius: 43px;
+            text-align: center;
+            padding-top: 50px;
         }
 
         .view-record {
@@ -158,7 +165,6 @@
         }
 
         .submit {
-            position: relative;
             width: 107px;
             height: 43px;
             background: #67061D;
@@ -175,53 +181,58 @@
         }
 
         .note {
-            position: absolute;
-            width: 671px;
-            height: 24px;
-            left: 400px;
-            top: 909px;
             font-family: 'Libre Baskerville', serif;
-            font-size: 24px;
-            font-weight: 400;
+            font-size: 18px;
             color: #000000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            margin-top: 10px;
         }
-
     </style>
 </head>
 <body>
-<div class="header">
-    <img src="images/ewu_logo.png" alt="EWU Logo" class="logo">
-    <h1 class="title">HealthConnect</h1>
-    <div class="subtitle">An EWU Health Service (Employee Portal)</div>
-</div>
+<header>
+    <div class="header-left">
+        <img src="images/ewu_logo.png" alt="HealthConnect Logo" class="logo">
+        <div class="header-text">
+            <h1>HealthConnect</h1>
+            <p>An EWU Health Service</p>
+        </div>
+    </div>
+    <div class="header-right">
+        <button class="header-button" id="employee-login">Employee Login</button>
+        <button class="header-button" id="login">Logout</button>
+    </div>
+</header>
 <div class="line"></div>
 <nav class="navbar">
     <button onclick="window.location.href='http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/doctor_home_page/doctorhomepage.html'">
         <img src="images/home.png" alt="Home Icon">
         <span>Home</span>
     </button>
-    <button onclick="window.location.href='http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/prescription_page/prescribeMedication.html'">
-        <img src="images/moneybag.png" alt="Prescribe Medication Icon">
-        <span>Prescribe Medication</span>
-    </button>
+
     <button onclick="window.location.href='http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/schedule_page/viewSchedule.html'">
         <img src="images/checklist.png" alt="View Staff Schedule Icon">
         <span>View Staff Schedule</span>
     </button>
 </nav>
 <div class="container">
-    <h2 class="view-record">View Your Patient’s Record</h2>
-    <p class="instructions">All fields are required unless stated otherwise</p>
+    <h2 class="view-record">Enter your Employee ID and Password to view your schedule for the week</h2>
+    <p class="instructions">All fields are required</p>
     <form class="form">
-        <label for="patientName">Patient Name</label>
-        <input type="text" id="patientName" name="patientName">
-        <label for="patientId">Patient ID</label>
-        <input type="text" id="patientId" name="patientId">
+        <label for="employeeId">Employee ID</label>
+        <input type="text" id="employeeId" name="employeeId" placeholder="Employee ID">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Password">
         <button type="submit" class="submit">Submit</button>
+        <div class="note">NOTE: MAKE SURE YOUR CREDENTIALS ARE CORRECT</div>
     </form>
 </div>
+<script>
+    document.getElementById("employee-login").addEventListener("click", function() {
+        window.location.href = "http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/login_page/login.html";
+    });
+    document.getElementById("login").addEventListener("click", function() {
+        window.location.href = "http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/login_page/login.html";
+    });
+</script>
 </body>
 </html>

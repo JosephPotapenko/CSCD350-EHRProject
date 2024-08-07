@@ -7,103 +7,79 @@
     <style>
         /* CSS Styles */
         body {
-            position: relative;
-            width: 1440px;
-            height: 1024px;
             background: #FFFFFF;
             font-family: 'Libre Baskerville', serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
         }
 
-        .header {
-            position: absolute;
-            width: 1440px;
-            height: 150px;
-            top: 0;
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid #000000;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .header-left {
             display: flex;
             align-items: center;
-            justify-content: center;
         }
 
-        .logo {
-            position: absolute;
-            left: 20px;
-            top: 20px;
+        .header-left img {
             width: 110px;
-            height: 105px;
+            height: 70px;
         }
 
-        .title {
-            font-family: 'Inter', sans-serif;
+        .header-text {
+            margin-left: 20px;
+        }
+
+        .header-text h1 {
+            margin: 0;
             font-size: 64px;
             font-weight: 400;
-            line-height: 100%;
-            display: flex;
-            align-items: center;
-            color: #000000;
-            margin-left: 150px;
         }
 
-        .subtitle {
-            position: absolute;
-            width: 761px;
-            height: 20px;
-            left: 147px;
-            top: 132px;
-            font-family: 'Inter', sans-serif;
+        .header-text p {
+            margin: 0;
             font-size: 20px;
-            font-weight: 400;
-            line-height: 100%;
-            display: flex;
-            align-items: center;
-            color: #000000;
         }
 
-        .line {
-            position: absolute;
-            width: 1440px;
-            height: 0px;
-            left: 0px;
-            top: 181px;
-            border: 1px solid #000000;
-            transform: rotate(-0.09deg);
-        }
-
-        .navbar {
-            position: absolute;
-            top: 200px;
-            left: 50px;
+        .header-right {
             display: flex;
-            gap: 50px;
-            font-family: 'Libre Baskerville', serif;
-            font-size: 24px;
-            font-weight: 400;
-            align-items: center;
-        }
-
-        .navbar button {
-            background: none;
-            border: none;
-            font-family: 'Libre Baskerville', serif;
-            font-size: 24px;
-            font-weight: 400;
-            color: #000000;
-            display: flex;
-            align-items: center;
             gap: 10px;
+        }
+
+        .header-button {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 18px;
+            padding: 10px 20px;
+            background-color: #67061D;
+            color: #FFFFFF;
+            border: none;
+            border-radius: 5px;
             cursor: pointer;
         }
 
-        .navbar button img {
-            width: 33px;
-            height: 31px;
+        .header-button:hover {
+            background-color: #500515;
         }
 
         .content {
-            position: absolute;
-            top: 250px;
-            left: 50px;
-            width: 1340px;
-            text-align: center;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .content h2 {
@@ -115,10 +91,7 @@
         }
 
         .insurance-container {
-            box-sizing: border-box;
-            position: relative;
-            width: 800px;
-            margin: 0 auto;
+            width: 600px;
             background: #D9D9D9;
             border: 3px solid #67061D;
             border-radius: 43px;
@@ -126,67 +99,98 @@
             padding: 20px;
         }
 
-        .insurance-list {
-            list-style-type: none;
-            padding: 0;
+        .insurance-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .insurance-button {
             font-family: 'Libre Baskerville', serif;
             font-size: 24px;
             font-weight: 400;
-            color: #000000;
+            padding: 15px 0;
+            background-color: #67061D;
+            color: #FFFFFF;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
         }
 
-        .insurance-list li {
-            margin: 10px 0;
+        .insurance-button:hover {
+            background-color: #500515;
         }
     </style>
 </head>
 <body>
-<div class="header">
-    <img src="images/ewu_logo.png" alt="EWU Logo" class="logo">
-    <h1 class="title">HealthConnect</h1>
-    <div class="subtitle">An EWU Health Service</div>
-</div>
-<div class="line"></div>
-<nav class="navbar">
-    <button onclick="redirectBasedOnRole()">
-        <img src="images/home.png" alt="Home Icon">
-        <span>Home</span>
-    </button>
-</nav>
+<header>
+    <div class="header-left">
+        <img src="images/ewu_logo.png" alt="HealthConnect Logo" class="logo">
+        <div class="header-text">
+            <h1>HealthConnect</h1>
+            <p>An EWU Health Service</p>
+        </div>
+    </div>
+    <div class="header-right">
+        <button class="header-button" id="employee-login">Employee Login</button>
+        <button class="header-button" id="logout">Logout</button>
+    </div>
+</header>
 <div class="content">
-    <h2>Accepted Insurance Plans</h2>
+    <h2>Explore Accepted Insurance Plans</h2>
     <div class="insurance-container">
-        <ul class="insurance-list">
-            <li>Insurance Plan A</li>
-            <li>Insurance Plan B</li>
-            <li>Insurance Plan C</li>
-            <li>Insurance Plan D</li>
-            <li>Insurance Plan E</li>
-        </ul>
+        <div class="insurance-buttons">
+            <button class="insurance-button" id="insurance1">WA State Medicare</button>
+            <button class="insurance-button" id="insurance2">Molina</button>
+            <button class="insurance-button" id="insurance3">Kaiser Permanente</button>
+            <button class="insurance-button" id="insurance4">United Healthcare</button>
+            <button class="insurance-button" id="insurance5">Blue Cross Blue Shield</button>
+            <button class="insurance-button" id="insurance6">Medicaid</button>
+            <button class="insurance-button" id="insurance7">Cigna</button>
+            <button class="insurance-button" id="insurance8">Aetna</button>
+        </div>
     </div>
 </div>
 <script>
-    function redirectBasedOnRole() {
-        const role = localStorage.getItem('userRole');
+    document.getElementById("employee-login").addEventListener("click", function() {
+        window.location.href = "http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/login_page/login.html";
+    });
 
-        // Check if role is available in local storage
-        if (!role) {
-            alert('User role not found. Please login again.');
-            window.location.href = 'http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/login_page/login.html';
-            return;
-        }
+    document.getElementById("logout").addEventListener("click", function() {
+        window.location.href = "http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/login_page/login.html";
+    });
 
-        // Redirect based on role
-        if (role === 'doctor' || role === 'Doctor') {
-            window.location.href = 'http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/doctor_home_page/doctorhomepage.html';
-        } else if (role === 'nurse' || role === 'Nurse') {
-            window.location.href = 'http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/nurse_home_page/nursehomepage.html';
-        } else if (role === 'patient' || role === 'Patient') {
-            window.location.href = 'http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/patient_home_page/patienthomepage.html';
-        } else {
-            alert('Unknown role');
-        }
-    }
+    document.getElementById("insurance1").addEventListener("click", function() {
+        window.location.href = "https://choose.wellpoint.com/medicaid/acq/wp/wa/medical/enroll/index.html?gclid=d21fe538a42217db74a4838b869eecc2&gclsrc=3p.ds&&_$ja=tsid:|cid:402512016|agid:1276533928578399|tid:kwd-79783868787222:loc-115816|crid:|nw:o|rnd:|dvc:c|adp:|mt:e|loc:111352&msclkid=d21fe538a42217db74a4838b869eecc2&utm_source=bing&utm_medium=cpc&utm_campaign=ANTH_MDCD_SEM_Bing_Non%20Brand_WA%20Medicaid%20SEM_Core_Regional_None_Exact_Cross%20Device_WA_Leads_NAN_NAN&utm_term=wa%20Medicaid&utm_content=WA%20-%20Medicaid";
+    });
+
+    document.getElementById("insurance2").addEventListener("click", function() {
+        window.location.href = "https://www.molinahealthcare.com/";
+    });
+
+    document.getElementById("insurance3").addEventListener("click", function() {
+        window.location.href = "https://kp.kaiserpermanente.org/brand?WT.mc_id=259317&WT.seg_1=Bing-zzzEnterpriseListingzzz-KPWA-c-BPU-e-kaiser%20permanente%20insurance%20plans-150812aad37e14fd8df67419f0688e40&WT.tsrc=ps&cid=ps|Bing-zzzEnterpriseListingzzz-KPWA-c-BPU-e-kaiser%20permanente%20insurance%20plans-150812aad37e14fd8df67419f0688e40|259317|bing|paid_search|cpc|&gclid=150812aad37e14fd8df67419f0688e40&gclsrc=3p.ds&msclkid=150812aad37e14fd8df67419f0688e40&utm_source=bing&utm_medium=cpc&utm_campaign=KP_EL_NON_PS_BING_WA_NON_NON_ELCOR_NON_NON_BRDEL_PROS_U65_Exact_ENG_Plan&utm_term=kaiser%20permanente%20insurance%20plans&utm_content=Health%20Plan";
+    });
+
+    document.getElementById("insurance4").addEventListener("click", function() {
+        window.location.href = "https://www.hca.wa.gov/about-hca/programs-and-initiatives/apple-health-medicaid#:~:text=In%20Washington%20State%2C%20Medicaid%20is%20called%20Apple%20Health.,all%20Washington%20State%20medical%20assistance%20programs%2C%20including%20Medicaid.";
+    });
+
+    document.getElementById("insurance5").addEventListener("click", function() {
+        window.location.href = "https://www.bcbs.com/";
+    });
+
+    document.getElementById("insurance6").addEventListener("click", function() {
+        window.location.href = "https://www.medicaid.gov/";
+    });
+
+    document.getElementById("insurance7").addEventListener("click", function() {
+        window.location.href = "https://www.cigna.com/";
+    });
+
+    document.getElementById("insurance8").addEventListener("click", function() {
+        window.location.href = "https://www.aetna.com/";
+    });
 </script>
 </body>
 </html>

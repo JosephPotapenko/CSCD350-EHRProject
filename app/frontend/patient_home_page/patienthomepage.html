@@ -5,65 +5,151 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HealthConnect</title>
     <link rel="stylesheet" href="patienthomepage.css">
+    <style>
+        /* CSS Styles */
+        body {
+            font-family: 'Libre Baskerville', serif;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid #000000;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .header-left img {
+            width: 110px;
+            height: 70px;
+        }
+
+        .header-text {
+            margin-left: 20px;
+        }
+
+        .header-text h1 {
+            margin: 0;
+            font-size: 64px;
+            font-weight: 400;
+        }
+
+        .header-text p {
+            margin: 0;
+            font-size: 20px;
+        }
+
+        .header-right {
+            display: flex;
+            gap: 10px;
+        }
+
+        .header-button {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 18px;
+            padding: 10px 20px;
+            background-color: #67061D;
+            color: #FFFFFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .header-button:hover {
+            background-color: #500515;
+        }
+
+        .hero-container {
+            position: relative;
+            width: 100%;
+        }
+
+        .hero img {
+            width: 100%;
+            height: auto;
+        }
+
+        .button-box {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 40px;
+            background-color: rgba(244, 244, 244, 0.9); /* Slightly transparent background */
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 500px; /* Set a fixed width for uniform buttons */
+            text-align: center;
+        }
+
+        .button-box h2 {
+            margin: 0 0 30px;
+            font-size: 24px;
+        }
+
+        .button-box button {
+            display: block;
+            width: 100%; /* Full width of the container */
+            padding: 20px; /* Increase padding for larger buttons */
+            font-size: 20px; /* Increase font size for larger text */
+            background-color: #67061D;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            margin: 15px 0; /* Space between buttons */
+        }
+
+    </style>
 </head>
 <body>
 <header>
-    <div class="logo">
-        <img src="images/ewu_logo.png" alt="EWU Logo">
-        <div>
+    <div class="header-left">
+        <img src="images/ewu_logo.png" alt="EWU Logo" class="logo">
+        <div class="header-text">
             <h1>HealthConnect</h1>
             <p>An EWU Health Service</p>
         </div>
     </div>
-    <div class="nav-buttons">
-        <button id="employee-login">Employee Login</button>
-        <button id="login">Login</button>
-        <button id="register">Register</button>
-    </div>
-    <div class="additional-buttons">
-        <button id="schedule-appointment">Schedule an Appointment</button>
-        <button id="view-records">View Records</button>
-        <button id="pay-bill">Pay My Bill</button>
+    <div class="header-right">
+        <button class="header-button" id="employee-login">Employee Login</button>
+        <button class="header-button" id="login">Logout</button>
+
     </div>
 </header>
 <main>
-    <div class="hero">
-        <img src="images/doc_help.PNG" alt="Healthcare">
+    <div class="hero-container">
+        <div class="button-box">
+            <h2>What would you like to do today?</h2>
+            <button id="schedule-appointment">Schedule an Appointment</button>
+            <button id="view-records">View Records</button>
+            <button id="pay-bill">Pay My Bill</button>
+            <button id="explore-insurance">Explore Insurance Options</button>
+        </div>
+        <div class="hero">
+            <img src="images/doc_help.PNG" alt="Healthcare">
+        </div>
     </div>
     <div class="content">
         <div class="contact-info">
-            <h2>How Can We Help You Today?</h2>
-            <p>Contact us</p>
+            <h1>How Can We Help You Today?</h1>
+            <h3>Contact us</h3>
             <p>Email: EWUHealthConnect@ewu.edu</p>
             <p>Phone: 206-123-4567</p>
-            <p>Office Hours: Our office is open from 8:00 a.m. – 5:00 p.m.<p>
-            <p> Monday – Friday, and our phone <p>
-            <p> lines are open from 9:00 a.m. – 4:00 p.m.</p>
-        </div>
-        <div class="quick-links">
-            <div>
-                <button id="quick-pay-bill">Pay My Bill</button>
-            </div>
-            <div>
-                <button id="quick-view-records">View Medical Records</button>
-            </div>
-            <div>
-                <button id="accepted-insurance">Accepted Insurance</button>
-            </div>
-            <div>
-                <button id="quick-schedule-appointment">Schedule an Appointment</button>
-            </div>
+            <p>Office Hours: Our office is open from 8:00 a.m. – 5:00 p.m.</p>
+            <p>Monday – Friday, and our phone lines are open from 9:00 a.m. – 4:00 p.m.</p>
         </div>
     </div>
 </main>
-<footer>
-    <button id="footer-schedule-appointment">Schedule an Appointment</button>
-    <button id="footer-view-records">View Records</button>
-    <button id="footer-pay-bill">Pay My Bill</button>
-</footer>
+
 <script>
     document.getElementById("employee-login").addEventListener("click", function() {
-        window.location.href = "employeeLogin.html";
+        window.location.href = "http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/login_page/login.html";
     });
     document.getElementById("login").addEventListener("click", function() {
         window.location.href = "http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/login_page/login.html";
@@ -80,26 +166,8 @@
     document.getElementById("pay-bill").addEventListener("click", function() {
         window.location.href = "http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/billing_page/payBill.html";
     });
-    document.getElementById("quick-pay-bill").addEventListener("click", function() {
-        window.location.href = "http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/billing_page/payBill.html";
-    });
-    document.getElementById("quick-view-records").addEventListener("click", function() {
-        window.location.href = "http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/patient_records_page/patientrecords.html";
-    });
-    document.getElementById("accepted-insurance").addEventListener("click", function() {
+    document.getElementById("explore-insurance").addEventListener("click", function() {
         window.location.href = "http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/insurance_page/acceptedInsurance.html";
-    });
-    document.getElementById("quick-schedule-appointment").addEventListener("click", function() {
-        window.location.href = "http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/appointment_page/scheduleAppointment.html";
-    });
-    document.getElementById("footer-schedule-appointment").addEventListener("click", function() {
-        window.location.href = "http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/appointment_page/scheduleAppointment.html";
-    });
-    document.getElementById("footer-view-records").addEventListener("click", function() {
-        window.location.href = "http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/patient_records_page/patientrecords.html";
-    });
-    document.getElementById("footer-pay-bill").addEventListener("click", function() {
-        window.location.href = "http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/billing_page/payBill.html";
     });
 </script>
 </body>
