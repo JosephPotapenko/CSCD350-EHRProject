@@ -49,7 +49,7 @@
             </div>
             <div class="service-item">
                 <p>View Staff Schedule</p>
-                <button class="service-button" id="view-schedule">></button>
+                <button class="service-button" id="view-schedules">></button>
             </div>
         </div>
     </div>
@@ -64,17 +64,17 @@
     document.getElementById("register").addEventListener("click", function() {
         window.location.href = "http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/register_page/register.html";
     });
-    document.getElementById("prescribe-medication").addEventListener("click", function() {
-        window.location.href = "http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/prescription_page/prescribeMedication.html";
-    });
     document.getElementById("view-records").addEventListener("click", function() {
-        window.location.href = "http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/records_page/viewRecords.html";
+        window.location.href = "http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/patient_records_page/patientrecords.html";
+    });
+    document.getElementById("prescribe-medication").addEventListener("click", function() {
+        window.location.href = "http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/prescription_page/prescribeMedication.html?_ijt=gseo60h7pouhd2kvmsu5k8utvd&_ij_reload=RELOAD_ON_SAVE";
     });
     document.getElementById("accepted-insurance").addEventListener("click", function() {
-        window.location.href = "http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/insurance_page/acceptedInsurance.html";
+        window.location.href = "http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/insurance_page/acceptedInsurance.html?_ijt=s8b5lrm6f6p6pgmdk6esu17e21&_ij_reload=RELOAD_ON_SAVE";
     });
-    document.getElementById("view-schedule").addEventListener("click", function() {
-        window.location.href = "http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/schedule_page/viewSchedule.html";
+    document.getElementById("view-schedules").addEventListener("click", function() {
+        window.location.href = " http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/schedule_page/viewSchedule.html";
     });
 </script>
 </body>
