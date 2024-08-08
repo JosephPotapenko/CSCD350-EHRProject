@@ -1,63 +1,68 @@
 package com.healthconnect.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.Date;
 
 @Entity
+@Table(name = "patients")
 public class Patient {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "patient_id")
+    private Long patientId;
 
-    private String username;
-    private String password;
+    @Column(name = "user_id")
+    private Long userId;
+
+    @Column(name = "first_name")
     private String firstName;
+
+    @Column(name = "last_name")
     private String lastName;
-    private String dob;
+
+    @Column(name = "dob")
+    @Temporal(TemporalType.DATE)
+    private Date dob;
+
+    @Column(name = "gender")
     private String gender;
-    private String contactInfo;
+
+    @Column(name = "phone_number")
+    private String phoneNumber;
+
+    @Column(name = "email")
     private String email;
 
     // Default constructor
     public Patient() {}
 
     // Parameterized constructor
-    public Patient(String username, String password, String firstName, String lastName, String dob, String gender, String contactInfo, String email) {
-        this.username = username;
-        this.password = password;
+    public Patient(Long patientId, Long userId, String firstName, String lastName, Date dob, String gender, String phoneNumber, String email) {
+        this.patientId = patientId;
+        this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.dob = dob;
         this.gender = gender;
-        this.contactInfo = contactInfo;
+        this.phoneNumber = phoneNumber;
         this.email = email;
     }
 
     // Getters and setters
-    public Long getId() {
-        return id;
+    public Long getPatientId() {
+        return patientId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setPatientId(Long patientId) {
+        this.patientId = patientId;
     }
 
-    public String getUsername() {
-        return username;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public String getFirstName() {
@@ -76,11 +81,11 @@ public class Patient {
         this.lastName = lastName;
     }
 
-    public String getDob() {
+    public Date getDob() {
         return dob;
     }
 
-    public void setDob(String dob) {
+    public void setDob(Date dob) {
         this.dob = dob;
     }
 
@@ -92,12 +97,12 @@ public class Patient {
         this.gender = gender;
     }
 
-    public String getContactInfo() {
-        return contactInfo;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setContactInfo(String contactInfo) {
-        this.contactInfo = contactInfo;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public String getEmail() {

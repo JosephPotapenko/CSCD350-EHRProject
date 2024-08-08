@@ -30,13 +30,11 @@ public class PatientService {
         Optional<Patient> optionalPatient = patientRepository.findById(id);
         if (optionalPatient.isPresent()) {
             Patient patient = optionalPatient.get();
-            patient.setUsername(patientDetails.getUsername());
-            patient.setPassword(patientDetails.getPassword());
             patient.setFirstName(patientDetails.getFirstName());
             patient.setLastName(patientDetails.getLastName());
             patient.setDob(patientDetails.getDob());
             patient.setGender(patientDetails.getGender());
-            patient.setContactInfo(patientDetails.getContactInfo());
+            patient.setPhoneNumber(patientDetails.getPhoneNumber());
             patient.setEmail(patientDetails.getEmail());
             return patientRepository.save(patient);
         } else {
