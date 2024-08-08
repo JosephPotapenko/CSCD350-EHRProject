@@ -16,6 +16,7 @@ public class BillingService {
     @Autowired
     private BillingRepository billingRepository;
 
+    @Autowired
     private UserAccountRepository userAccountRepository;
 
     public Billing saveBilling(Billing billing) {
@@ -27,11 +28,14 @@ public class BillingService {
     }
 
     public boolean payBill(PaymentRequest paymentRequest) {
-        Billing billing = billingRepository.findById(paymentRequest.getBillingId()).orElse(null);
-        if (billing != null) {
-            billing.setStatus("Paid");
-            billingRepository.save(billing);
-            return true;
+        UserAccount userAccount = userAccountRepository.findById(paymentRequest.getUserId()).orElse(null);
+        if (userAccount != null) {
+            Billing billing = billingRepository.findById(paymentRequest.getBillingId()).orElse(null);
+            if (billing != null && billing.getUserAccount().equals(userAccount)) {
+                billing.setStatus("Paid");
+                billingRepository.save(billing);
+                return true;
+            }
         }
         return false;
     }

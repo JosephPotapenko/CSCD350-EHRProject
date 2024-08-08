@@ -20,18 +20,18 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf().disable()
-                .cors() // Enable CORS support
-                .and()
+                .cors(); // Enable CORS support
+                //.and()
                 /*.authorizeRequests()
                 .anyRequest().authenticated()
                 .and()*/
-                .authorizeHttpRequests()
-                .requestMatchers("/api/users/register", "/auth/login", "/billing/pay", "/billing/patient/**","/doctors").permitAll()
+                /*.authorizeHttpRequests()
+                .requestMatchers("/api/users/register", "/auth/login", "/billing/**", "/billing/patient/**", "/doctors").permitAll() //"/billing/patient/**"
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .and()
-                .httpBasic(); // Enables HTTP Basic Authentication
+                .httpBasic(); // Enables HTTP Basic Authentication*/
         return http.build();
     }
 
@@ -46,7 +46,7 @@ public class SecurityConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("http://localhost:63342") // Replace with your frontend's URL
+                        .allowedOrigins("http://localhost:63342") // frontend's URL
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
                         .allowCredentials(true);

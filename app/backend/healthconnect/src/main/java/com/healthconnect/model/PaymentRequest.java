@@ -6,6 +6,7 @@ public class PaymentRequest {
     private String cardNumber;
     private String expiryDate;
     private String cvv;
+    private Long userId; // Add this line
 
     // Getters and setters
     public Long getBillingId() {
@@ -46,5 +47,13 @@ public class PaymentRequest {
 
     public void setCvv(String cvv) {
         this.cvv = cvv;
+    }
+
+    public Long getUserId() { // Add this getter
+        return userId;
+    }
+
+    public void setUserId(Long userId) { // Add this setter
+        this.userId = userId;
     }
 }
