@@ -71,14 +71,14 @@
             box-sizing: border-box;
             position: absolute;
             width: 766px;
-            height: 725px;
+            height: auto;
             left: 337px;
             top: 260px;
             background: #D9D9D9;
             border: 3px solid #67061D;
             border-radius: 43px;
             text-align: center;
-            padding-top: 50px;
+            padding: 50px;
         }
 
         .navbar {
@@ -141,47 +141,12 @@
             margin-top: 10px;
         }
 
-        .form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .form input {
-            width: 339px;
-            height: 43px;
-            background: #FFFFFF;
-            border-radius: 26px;
-            padding: 10px;
-            font-size: 16px;
-        }
-
-        .form label {
+        .record-item {
             font-family: 'Libre Baskerville', serif;
-            font-size: 15px;
+            font-size: 18px;
             font-weight: 400;
             color: #000000;
-            align-self: flex-start;
-            margin-left: 200px;
-        }
-
-        .submit {
-            position: relative;
-            width: 107px;
-            height: 43px;
-            background: #67061D;
-            border: 3px solid #000000;
-            border-radius: 26px;
-            font-family: 'Libre Baskerville', serif;
-            font-size: 15px;
-            font-weight: 400;
-            color: #FFFFFF;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-top: 20px;
+            margin: 10px 0;
         }
 
         .note {
@@ -213,7 +178,6 @@
     <div class="header-right">
         <button class="header-button" id="employee-login">Employee Login</button>
         <button class="header-button" id="login">Logout</button>
-
     </div>
 </header>
 <div class="line"></div>
@@ -232,15 +196,9 @@
     </button>
 </nav>
 <div class="container">
-    <h2 class="view-record">View Your Patient’s Record</h2>
-    <p class="instructions">All fields are required unless stated otherwise</p>
-    <form class="form">
-        <label for="patientName">Patient Name</label>
-        <input type="text" id="patientName" name="patientName">
-        <label for="patientId">Patient ID</label>
-        <input type="text" id="patientId" name="patientId">
-        <button type="submit" class="submit">Submit</button>
-    </form>
+    <h2 class="view-record">Your Medical History</h2>
+    <p class="instructions">Displaying your medical history records below:</p>
+    <div id="medical-history"></div>
 </div>
 <script>
     document.getElementById("employee-login").addEventListener("click", function() {
@@ -249,9 +207,42 @@
     document.getElementById("login").addEventListener("click", function() {
         window.location.href = "http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/login_page/login.html";
     });
-    document.getElementById("register").addEventListener("click", function() {
-        window.location.href = "http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/register_page/register.html";
-    });
+
+    // Function to get the current user's ID from your local cache or session
+    function getCurrentUserId() {
+        // Example implementation; replace with your actual logic
+        return localStorage.getItem('userId'); // or sessionStorage or another method
+    }
+
+    function fetchMedicalHistory() {
+        const userId = getCurrentUserId();
+        if (!userId) {
+            document.getElementById('medical-history').innerHTML = '<p>Please log in to view your medical history.</p>';
+            return;
+        }
+
+        fetch(`http://localhost:8080/api/medical-history?userId=${userId}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.length === 0) {
+                    document.getElementById('medical-history').innerHTML = '<p>No medical history found.</p>';
+                } else {
+                    document.getElementById('medical-history').innerHTML = data.map(record => `
+                        <div class="record-item">
+                            <p>Description: ${record.description}</p>
+                            <p>Date Recorded: ${new Date(record.dateRecorded).toLocaleDateString()}</p>
+                        </div>
+                    `).join('');
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching medical history:', error);
+                document.getElementById('medical-history').innerHTML = '<p>Error fetching medical history.</p>';
+            });
+    }
+
+    // Call the function to fetch and display medical history on page load
+    fetchMedicalHistory();
 </script>
 </body>
 </html>

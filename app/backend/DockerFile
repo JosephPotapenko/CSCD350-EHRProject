@@ -1,11 +1,23 @@
+# Use an official Maven image to build the Spring Boot application
+FROM maven:3.8.5-openjdk-17 AS build
+WORKDIR /app/backend
+
+# Copy the pom.xml and source code to the container
+COPY pom.xml .
+COPY src ./src
+
+# Package the Spring Boot application
+RUN mvn clean package -DskipTests
+
 # Use an official OpenJDK runtime as a parent image
-FROM openjdk:11-jdk-slim
+FROM openjdk:17-jdk-slim
+WORKDIR /app
 
-# The application's jar file
-ARG JAR_FILE=target/healthconnect-0.0.1-SNAPSHOT.jar
+# Copy the JAR file from the build stage
+COPY --from=build /app/backend/target/healthconnect-0.0.1-SNAPSHOT.jar /app/HealthConnectApplication.jar
 
-# Add the application's jar to the container
-COPY ${JAR_FILE} app.jar
+# Expose the backend port
+EXPOSE 8080
 
-# Run the jar file
-ENTRYPOINT ["java","-jar","/app.jar"]
+# Run the Spring Boot application
+ENTRYPOINT ["java", "-jar", "/app/HealthConnectApplication.jar"]
