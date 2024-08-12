@@ -194,14 +194,28 @@
     <h2>Prescribe/Update Patient’s Medication</h2>
     <div class="form">
         <p>All fields are required unless stated otherwise</p>
-        <input type="text" placeholder="Patient Name">
-        <input type="text" placeholder="Patient ID">
-        <input type="text" placeholder="Medication">
-        <button type="submit">Submit</button>
+        <input type="text" id="patientName" placeholder="Patient Name">
+        <input type="text" id="patientID" placeholder="Patient ID">
+        <input type="text" id="medication" placeholder="Medication">
+        <input type="text" id="doctorsNote" placeholder="Doctor's Note">
+        <button type="submit" onclick="confirmSubmission()">Submit</button>
         <div class="note">NOTE: THE ABOVE FIELDS ARE REQUIRED</div>
     </div>
 </div>
 <script>
+    function confirmSubmission() {
+        const patientName = document.getElementById('patientName').value;
+        const patientID = document.getElementById('patientID').value;
+        const medication = document.getElementById('medication').value;
+        const doctorsNote = document.getElementById('doctorsNote').value;
+
+        if (patientName && patientID && medication && doctorsNote) {
+            alert(`Please confirm the following details:\n\nPatient Name: ${patientName}\nPatient ID: ${patientID}\nMedication: ${medication}\nDoctor's Note: ${doctorsNote}`);
+        } else {
+            alert('Please fill in all the required fields.');
+        }
+    }
+
     function redirectBasedOnRole() {
         const role = localStorage.getItem('userRole');
         if (!role) {

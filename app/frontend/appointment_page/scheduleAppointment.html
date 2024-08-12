@@ -9,7 +9,6 @@
         /* CSS Styles */
         body {
             font-family: 'Libre Baskerville', serif;
-
         }
 
         header {
@@ -159,27 +158,77 @@
         <h2>Schedule your appointment with us today!</h2>
         <p>All fields are required unless stated otherwise</p>
         <div class="appointment-container">
-            <form class="appointment-form">
+            <form class="appointment-form" id="appointmentForm">
                 <label for="doctorName">Doctor's Name</label>
                 <select id="doctorName" name="doctorName">
                     <option value="" disabled selected>Select your option</option>
-                    <!-- Add options here -->
+                    <!-- Doctor options will be populated by JavaScript -->
                 </select>
                 <label for="dayOfWeek">Day of the Week</label>
                 <select id="dayOfWeek" name="dayOfWeek">
                     <option value="" disabled selected>Select your option</option>
-                    <!-- Add options here -->
+                    <option value="Monday">Monday</option>
+                    <option value="Tuesday">Tuesday</option>
+                    <option value="Wednesday">Wednesday</option>
+                    <option value="Thursday">Thursday</option>
+                    <option value="Friday">Friday</option>
                 </select>
                 <label for="time">Time</label>
                 <select id="time" name="time">
                     <option value="" disabled selected>Select your option</option>
-                    <!-- Add options here -->
+                    <!-- Time options will be populated by JavaScript -->
                 </select>
                 <button type="submit" class="submit">Submit</button>
             </form>
-            <p class="note">NOTE: THE ARROWS MEAN A DROP DOWN MENU</p>
+            <p class="note">Chose your practitioner and a time slot.</p>
         </div>
     </div>
 </main>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const doctors = [
+            { doctor_id: 1, first_name: 'Jimmy', last_name: 'Rickster', specialty: 'Neurologist', contact_info: '509-202-7348', email: 'jimmy@ewu.com' },
+            { doctor_id: 2, first_name: 'Johnny', last_name: 'Johnson', specialty: 'Gynecologist', contact_info: '509-867-5309', email: 'john@ewu.com' },
+            { doctor_id: 24, first_name: 'Bill', last_name: 'Nye', specialty: 'Science Guy', contact_info: '509-808-5309', email: 'bill@ewu.com' },
+            { doctor_id: 25, first_name: 'John', last_name: 'Doe', specialty: 'Family Doctor', contact_info: '509-808-5309', email: 'bill@ewu.com' }
+        ];
+
+        const doctorSelect = document.getElementById('doctorName');
+        const timeSelect = document.getElementById('time');
+
+        // Populate doctor dropdown
+        doctors.forEach(doctor => {
+            const option = document.createElement('option');
+            option.value = doctor.doctor_id;
+            option.textContent = `${doctor.first_name} ${doctor.last_name} - ${doctor.specialty}`;
+            doctorSelect.appendChild(option);
+        });
+
+        // Populate time dropdown (for the week after 08/13/2024, hours 9-5)
+        for (let hour = 9; hour <= 17; hour++) {
+            const option = document.createElement('option');
+            option.value = `${hour}:00`;
+            option.textContent = `${hour}:00`;
+            timeSelect.appendChild(option);
+        }
+
+        // Handle form submission
+        document.getElementById('appointmentForm').addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent default form submission
+
+            const selectedDoctor = doctorSelect.options[doctorSelect.selectedIndex].text;
+            const selectedDay = document.getElementById('dayOfWeek').value;
+            const selectedTime = timeSelect.value;
+
+            if (selectedDoctor && selectedDay && selectedTime) {
+                alert(`Appointment scheduled with Dr. ${selectedDoctor} on ${selectedDay} at ${selectedTime}.`);
+            } else {
+                alert('Please fill out all fields.');
+            }
+        });
+    });
+</script>
+
 </body>
 </html>
