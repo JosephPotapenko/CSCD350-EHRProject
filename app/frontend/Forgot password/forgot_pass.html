@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HealthConnect Login</title>
-    <link rel="stylesheet" href="login.css">
-    <script src="login.js" defer></script></script>
+    <title>HealthConnect Forgot Password</title>
+    <link rel="stylesheet" href="forgot_pass.css">
+    <script src="forgot_pass.js" defer></script>
     <style>
         body {
             font-family: 'Libre Baskerville', serif;
@@ -91,28 +91,26 @@
             text-decoration: underline;
         }
     </style>
-   <script>
+    <script>
         document.addEventListener("DOMContentLoaded", function() {
             document.querySelector(".register-link").addEventListener("click", function(event) {
                 event.preventDefault();
                 window.location.href = "http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/register_page/Register.html";
             });
-
-            document.querySelector(".forgot-password").addEventListener("click", function(event) {
+            document.querySelector(".login").addEventListener("click", function(event) {
                 event.preventDefault();
-                window.location.href = "http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/Forgot%20password/forgot_pass.html";
+                window.location.href = "http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/login_page/login.html#";
             });
-
         });
-    </script>-->
+    </script>
 </head>
 <body>
 <div class="container">
     <form class="login-box">
         <img src="images/ewu_logo.png" alt="HealthConnect Logo" class="logo">
-        <h1>Welcome</h1>
+        <h1>Forgot Password</h1>
         <label for="position">Please select position</label>
-        <select id="position" name="position">
+        <select id="position" name="position" required>
             <option value="" disabled selected>Select an option</option>
             <option value="patient">Patient</option>
             <option value="nurse">Nurse</option>
@@ -120,11 +118,9 @@
         </select>
         <label for="email">Email Address</label>
         <input type="email" id="email" name="email" placeholder="Enter Email Address" required>
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password" placeholder="Enter Password" required>
         <button type="submit" class="submit-btn">Submit</button>
-        <a href="#" class="forgot-password">Forgot password?</a>
-        <a href="#" class="register-link">New User? Register Here</a>
+        <a href="#" class="login">Have an Account? Login</a>
+        <a href="#" class="register-link">New User? Register</a>
     </form>
 </div>
 </body>
