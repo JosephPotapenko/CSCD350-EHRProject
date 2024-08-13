@@ -167,11 +167,11 @@
                 <label for="dayOfWeek">Day of the Week</label>
                 <select id="dayOfWeek" name="dayOfWeek">
                     <option value="" disabled selected>Select your option</option>
-                    <option value="Monday">Monday</option>
-                    <option value="Tuesday">Tuesday</option>
-                    <option value="Wednesday">Wednesday</option>
-                    <option value="Thursday">Thursday</option>
-                    <option value="Friday">Friday</option>
+                    <option value="Mon.  08/19/2024">Mon.  08/19/2024</option>
+                    <option value="Tue.  08/20/2024">Tue.  08/20/2024</option>
+                    <option value="Wed.  08/21/2024">Wed.  08/21/2024</option>
+                    <option value="Thur. 08/22/2024">Thur. 08/22/2024</option>
+                    <option value="Fri.  08/23/2024">Fri.  08/23/2024</option>
                 </select>
                 <label for="time">Time</label>
                 <select id="time" name="time">
@@ -222,7 +222,7 @@
             const selectedTime = timeSelect.value;
 
             if (selectedDoctor && selectedDay && selectedTime) {
-                alert(`Appointment scheduled with Dr. ${selectedDoctor} on ${selectedDay} at ${selectedTime}.`);
+                alert(`Please confirm the following information: \n\nAppointment scheduled with Dr. ${selectedDoctor}\nScheduled Day: ${selectedDay} \nScheduled TIme: ${selectedTime}.`);
             } else {
                 alert('Please fill out all fields.');
             }
