@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HealthConnect - Prescribe Medication</title>
+    <title>HealthConnect</title>
     <style>
+        /* CSS Styles */
         body {
             position: relative;
             width: 1440px;
@@ -66,13 +67,18 @@
             background-color: #500515;
         }
 
-        .line {
+        .container {
+            box-sizing: border-box;
             position: absolute;
-            width: 1440px;
-            height: 1px;
-            left: 0;
-            top: 150px;
-            background: #000000;
+            width: 766px;
+            height: auto;
+            left: 337px;
+            top: 260px;
+            background: #D9D9D9;
+            border: 3px solid #67061D;
+            border-radius: 43px;
+            text-align: center;
+            padding: 50px;
         }
 
         .navbar {
@@ -85,6 +91,21 @@
             font-size: 24px;
             font-weight: 400;
             align-items: center;
+        }
+
+        .line {
+            position: absolute;
+            width: 1440px;
+            height: 0px;
+            left: 0px;
+            top: 181px;
+            border: 1px solid #000000;
+            transform: rotate(-0.09deg);
+        }
+
+        .navbar img, .container img {
+            width: 33px;
+            height: 31px;
         }
 
         .navbar button {
@@ -105,59 +126,43 @@
             height: 31px;
         }
 
-        .form-container {
-            position: absolute;
-            top: 300px;
-            left: 50px;
-            width: 1340px;
-            text-align: center;
-        }
-
-        .form-container h2 {
+        .login-box h2 {
             font-family: 'Libre Baskerville', serif;
-            font-size: 36px;
+            font-size: 34px;
             font-weight: 400;
             color: #000000;
             margin-bottom: 20px;
         }
 
-        .form {
-            box-sizing: border-box;
-            width: 800px;
-            margin: 0 auto;
-            background: #D9D9D9;
-            border: 3px solid #67061D;
-            border-radius: 43px;
-            text-align: center;
-            padding: 20px;
+        .login-box label {
+            font-size: 18px;
+            display: block;
+            text-align: left;
+            margin-bottom: 10px;
         }
 
-        .form input {
-            width: 90%;
+        .login-box input {
+            font-size: 24px;
+            padding: 15px;
             margin-bottom: 20px;
-            padding: 10px;
-            font-family: 'Libre Baskerville', serif;
-            font-size: 18px;
+            width: calc(100% - 30px);
             border: 1px solid #ccc;
             border-radius: 5px;
+            box-sizing: border-box;
         }
 
-        .form button {
-            background: #67061D;
-            color: #FFFFFF;
-            border: none;
-            padding: 10px 20px;
-            font-family: 'Libre Baskerville', serif;
+        .login-box button {
             font-size: 24px;
+            padding: 15px 30px;
+            background-color: #67061D;
+            color: #fff;
+            border: none;
             border-radius: 5px;
             cursor: pointer;
         }
 
-        .note {
-            margin-top: 10px;
-            font-family: 'Libre Baskerville', serif;
-            font-size: 18px;
-            color: #000000;
+        .login-box button:hover {
+            background-color: #500515;
         }
     </style>
 </head>
@@ -181,26 +186,24 @@
         <img src="images/home.png" alt="Home Icon">
         <span>Home</span>
     </button>
-    <button onclick="redirectToPatientRecords()">
-        <img src="images/document.png" alt="View Patient Records">
-        <span>View Patient Records</span>
+    <button onclick="redirectToPrescribeMedication()">
+        <img src="images/document.png" alt="Prescribe Medicaiton">
+        <span>Prescribe Medication</span>
     </button>
     <button onclick="redirectToStaffSchedule()">
         <img src="images/checklist.png" alt="View Staff Schedule">
         <span>View Staff Schedule</span>
     </button>
 </nav>
-<div class="form-container">
-    <h2>Prescribe/Update Patient’s Medication</h2>
-    <div class="form">
-        <p>All fields are required unless stated otherwise</p>
-        <input type="text" id="patientName" placeholder="Patient Name">
-        <input type="text" id="patientID" placeholder="Patient ID">
-        <input type="text" id="medication" placeholder="Medication">
-        <input type="text" id="doctorsNote" placeholder="Doctor's Note">
-        <button type="submit" onclick="confirmSubmission()">Submit</button>
-        <div class="note">NOTE: THE ABOVE FIELDS ARE REQUIRED</div>
-    </div>
+<div class="container">
+    <form class="login-box" id="login-form">
+        <h2>Enter the following patient information to locate the patient record:</h2>
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" placeholder="Enter Email Address" required>
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Enter Password" required>
+        <button type="submit">Submit</button>
+    </form>
 </div>
 <script>
     function confirmSubmission() {
@@ -235,8 +238,8 @@
         }
     }
 
-    function redirectToPatientRecords() {
-        window.location.href = 'http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/patient_records_nurse+doc/patient_records_nurse+doc.html';
+    function redirectToPrescribeMedication() {
+        window.location.href = 'http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/prescription_page/prescribeMedication.html';
     }
 
     function redirectToStaffSchedule() {
@@ -248,6 +251,48 @@
     });
     document.getElementById("login").addEventListener("click", function() {
         window.location.href = "http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/login_page/login.html";
+    });
+
+    document.getElementById("employee-login").addEventListener("click", function() {
+        window.location.href = "http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/login_page/login.html";
+    });
+    document.getElementById("login").addEventListener("click", function() {
+        window.location.href = "http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/login_page/login.html";
+    });
+
+    document.getElementById('login-form').addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+
+        try {
+            const response = await fetch('http://localhost:8080/auth/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: new URLSearchParams({
+                    email: email,
+                    password: password
+                })
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                const userId = data.userId;
+
+                localStorage.setItem('userId', userId);
+                localStorage.setItem('email', email); // Save email to use in the next page
+                window.location.href = "http://localhost:63342/cs350-summer2024-project-dev-oops/app/frontend/patient_records_page/patientrecords.html";
+            } else {
+                const error = await response.text();
+                alert(error);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('An error occurred. Please try again.');
+        }
     });
 </script>
 </body>
