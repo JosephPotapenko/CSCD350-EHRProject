@@ -9,7 +9,6 @@
         /* CSS Styles */
         body {
             font-family: 'Libre Baskerville', serif;
-
         }
 
         header {
@@ -128,6 +127,60 @@
             margin-top: 20px;
             font-size: 24px;
         }
+
+        /* Calendar Styles */
+        .calendar {
+            width: 100%;
+            margin: 20px 0;
+            border: 2px solid #67061D; /* Added border */
+            padding: 10px;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .calendar-days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            margin-top: 10px;
+            gap: 5px;
+        }
+
+        .calendar-day {
+            padding: 5px;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            background-color: #fff;
+            transition: background-color 0.3s, transform 0.3s;
+            font-size: 14px;
+            font-weight: bold;
+            color: #67061D;
+        }
+
+        .calendar-day:hover {
+            background-color: #67061D;
+            color: #fff;
+            transform: scale(1.05);
+        }
+
+        .calendar-day.selected {
+            background-color: #67061D;
+            color: white;
+            border: 1px solid #000;
+        }
+
+        .calendar-day.disabled {
+            background-color: #eee;
+            pointer-events: none;
+            color: #999;
+        }
     </style>
 </head>
 <body>
@@ -159,27 +212,199 @@
         <h2>Schedule your appointment with us today!</h2>
         <p>All fields are required unless stated otherwise</p>
         <div class="appointment-container">
-            <form class="appointment-form">
+            <form class="appointment-form" id="appointmentForm">
                 <label for="doctorName">Doctor's Name</label>
                 <select id="doctorName" name="doctorName">
                     <option value="" disabled selected>Select your option</option>
-                    <!-- Add options here -->
+                    <!-- Doctor options will be populated by JavaScript -->
                 </select>
-                <label for="dayOfWeek">Day of the Week</label>
-                <select id="dayOfWeek" name="dayOfWeek">
-                    <option value="" disabled selected>Select your option</option>
-                    <!-- Add options here -->
-                </select>
+
+                <div class="calendar">
+                    <div class="calendar-header">
+                        <select id="monthSelect"></select>
+                        <select id="yearSelect"></select>
+                    </div>
+                    <div class="calendar-days" id="calendarDays"></div>
+                </div>
+
                 <label for="time">Time</label>
                 <select id="time" name="time">
                     <option value="" disabled selected>Select your option</option>
-                    <!-- Add options here -->
+                    <!-- Time options will be populated by JavaScript -->
                 </select>
                 <button type="submit" class="submit">Submit</button>
             </form>
-            <p class="note">NOTE: THE ARROWS MEAN A DROP DOWN MENU</p>
+            <p class="note">Choose your practitioner, a day, and a time slot.</p>
         </div>
     </div>
 </main>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const doctors = {
+            1: { name: 'Jimmy Rickster - Neurologist', blockedTimes: {} },
+            2: { name: 'Johnny Johnson - Gynecologist', blockedTimes: {} },
+            24: { name: 'Bill Nye - Science Guy', blockedTimes: {} },
+            25: { name: 'John Doe - Family Doctor', blockedTimes: {} }
+        };
+
+        const doctorSelect = document.getElementById('doctorName');
+        const timeSelect = document.getElementById('time');
+        const calendarDays = document.getElementById('calendarDays');
+        const monthSelect = document.getElementById('monthSelect');
+        const yearSelect = document.getElementById('yearSelect');
+        let selectedDate = null;
+        let selectedDoctorId = null;
+
+        // Populate doctor dropdown
+        for (const [doctorId, doctor] of Object.entries(doctors)) {
+            const option = document.createElement('option');
+            option.value = doctorId;
+            option.textContent = doctor.name;
+            doctorSelect.appendChild(option);
+        }
+
+        // Populate time dropdown (hours 9-5)
+        function populateTimeOptions(doctorId) {
+            timeSelect.innerHTML = '<option value="" disabled selected>Select your option</option>';
+            for (let hour = 9; hour <= 17; hour++) {
+                const period = hour < 12 ? 'AM' : 'PM';
+                const displayHour = hour % 12 || 12;
+                const option = document.createElement('option');
+                option.value = `${displayHour}:00 ${period}`;
+                option.textContent = `${displayHour}:00 ${period}`;
+
+                // Disable times blocked for the selected doctor and date
+                const dateKey = selectedDate ? selectedDate.toISOString().split('T')[0] : null;
+                if (dateKey && doctors[doctorId].blockedTimes[dateKey] && doctors[doctorId].blockedTimes[dateKey].includes(option.value)) {
+                    option.disabled = true;
+                }
+
+                timeSelect.appendChild(option);
+            }
+        }
+
+        // Populate year and month dropdowns
+        const now = new Date();
+        const currentMonth = now.getMonth();
+        const currentYear = now.getFullYear();
+
+        for (let year = currentYear; year <= currentYear + 15; year++) {
+            const option = document.createElement('option');
+            option.value = year;
+            option.textContent = year;
+            yearSelect.appendChild(option);
+        }
+
+        for (let month = 0; month < 12; month++) {
+            const option = document.createElement('option');
+            option.value = month;
+            option.textContent = new Date(0, month).toLocaleString('default', { month: 'long' });
+            monthSelect.appendChild(option);
+        }
+
+        yearSelect.value = currentYear;
+        monthSelect.value = currentMonth;
+
+        // Generate the calendar days
+        function generateCalendar(month, year) {
+            calendarDays.innerHTML = '';
+            const firstDay = new Date(year, month, 1).getDay();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+            for (let i = 0; i < firstDay; i++) {
+                const emptyCell = document.createElement('div');
+                emptyCell.classList.add('calendar-day', 'disabled');
+                calendarDays.appendChild(emptyCell);
+            }
+
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dayCell = document.createElement('div');
+                const date = new Date(year, month, day);
+
+                dayCell.textContent = day;
+                dayCell.classList.add('calendar-day');
+
+                // Disable past dates
+                if (date < now) {
+                    dayCell.classList.add('disabled');
+                } else {
+                    dayCell.addEventListener('click', function () {
+                        selectedDate = date;
+                        document.querySelectorAll('.calendar-day.selected').forEach(cell => cell.classList.remove('selected'));
+                        dayCell.classList.add('selected');
+
+                        // Reset time options based on selected doctor
+                        if (selectedDoctorId) {
+                            populateTimeOptions(selectedDoctorId);
+                        }
+                    });
+                }
+
+                calendarDays.appendChild(dayCell);
+            }
+        }
+
+        // Initial calendar generation
+        generateCalendar(currentMonth, currentYear);
+
+        // Handle month/year change
+        monthSelect.addEventListener('change', function () {
+            generateCalendar(parseInt(monthSelect.value), parseInt(yearSelect.value));
+        });
+
+        yearSelect.addEventListener('change', function () {
+            generateCalendar(parseInt(monthSelect.value), parseInt(yearSelect.value));
+        });
+
+        // Handle doctor selection change
+        doctorSelect.addEventListener('change', function () {
+            selectedDoctorId = doctorSelect.value;
+            if (selectedDate) {
+                populateTimeOptions(selectedDoctorId);
+            }
+        });
+
+        // Handle form submission
+        document.getElementById('appointmentForm').addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent default form submission
+
+            const selectedDoctor = doctors[selectedDoctorId].name;
+            const selectedTime = timeSelect.value;
+
+            if (selectedDoctor && selectedDate && selectedTime) {
+                const formattedDate = selectedDate.toDateString();
+                const confirmAppointment = confirm(`You are scheduling an appointment with Dr. ${selectedDoctor} on ${formattedDate} at ${selectedTime}.\n\nDo you want to confirm this appointment?`);
+
+                if (confirmAppointment) {
+                    alert('Appointment scheduled.');
+
+                    // Block the selected time for the specific doctor and date
+                    const dateKey = selectedDate.toISOString().split('T')[0];
+                    if (!doctors[selectedDoctorId].blockedTimes[dateKey]) {
+                        doctors[selectedDoctorId].blockedTimes[dateKey] = [];
+                    }
+                    doctors[selectedDoctorId].blockedTimes[dateKey].push(selectedTime);
+
+                    // Disable the selected time for the selected doctor on the selected date
+                    timeSelect.querySelector(`option[value="${selectedTime}"]`).disabled = true;
+
+                    // Check if all times are blocked for the selected doctor on the selected date
+                    if (doctors[selectedDoctorId].blockedTimes[dateKey].length === timeSelect.options.length - 1) {
+                        const dayOption = calendarDays.querySelector(`.calendar-day.selected`);
+                        if (dayOption) {
+                            dayOption.classList.add('disabled');
+                        }
+                    }
+                } else {
+                    alert('Appointment was not scheduled.');
+                }
+            } else {
+                alert('Please fill out all fields.');
+            }
+        });
+    });
+</script>
+
 </body>
 </html>
