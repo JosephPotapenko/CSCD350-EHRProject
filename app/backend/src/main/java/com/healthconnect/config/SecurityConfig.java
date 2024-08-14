@@ -3,9 +3,7 @@ package com.healthconnect.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-//import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -20,18 +18,13 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf().disable()
-                .cors(); // Enable CORS support
-                //.and()
-                /*.authorizeRequests()
-                .anyRequest().authenticated()
-                .and()*/
-                /*.authorizeHttpRequests()
-                .requestMatchers("/api/users/register", "/auth/login", "/billing/**", "/billing/patient/**", "/doctors").permitAll() //"/billing/patient/**"
-                .anyRequest().authenticated()
-                .and()
-                .formLogin()
-                .and()
-                .httpBasic(); // Enables HTTP Basic Authentication*/
+                .cors().and()
+                .authorizeHttpRequests(authorize -> authorize
+                        .requestMatchers("/api/users/register", "/auth/login", "/billing/**", "/billing/patient/**", "/doctors").permitAll()
+                        .anyRequest().authenticated()
+                )
+                .formLogin().and()
+                .httpBasic();
         return http.build();
     }
 
@@ -46,12 +39,11 @@ public class SecurityConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("http://localhost:63342") // frontend's URL
+                        .allowedOrigins("http://localhost:63342")
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
                         .allowCredentials(true);
             }
         };
     }
-
 }

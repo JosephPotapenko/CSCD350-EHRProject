@@ -3,40 +3,46 @@ package com.healthconnect;
 import com.healthconnect.controller.LoginController;
 import com.healthconnect.model.LoginResponse;
 import com.healthconnect.service.UserAccountService;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.MediaType;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.springframework.http.ResponseEntity;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.when;
 
-@WebMvcTest(LoginController.class)
 public class LoginControllerTest {
 
-    @Autowired
-    private MockMvc mockMvc;
-
-    @MockBean
+    @Mock
     private UserAccountService userAccountService;
 
-//+
+    @InjectMocks
+    private LoginController loginController;
+
+    private LoginResponse mockLoginResponse;
+
+    @BeforeEach
+    public void setUp() {
+        MockitoAnnotations.openMocks(this);
+        mockLoginResponse = new LoginResponse("USER", 1L);
+    }
 
     @Test
-    public void testLogin() throws Exception {
-        // Arrange: Mock the service to return null (authentication failure)
-        Mockito.when(userAccountService.authenticate("test@example.com", "wrongpassword"))
-                .thenReturn(null);
+    public void testLogin_Success() {
+        // Arrange
+        String email = "newuser@ewu.edu";
+        String password = "password";
+        when(userAccountService.authenticate(email, password)).thenReturn(mockLoginResponse);
 
-        // Act & Assert: Perform the login request and verify the response
-        mockMvc.perform(MockMvcRequestBuilders.post("/auth/login")
-                        .param("option value", "patient")
-                        .param("email", "test@example.com")
-                        .param("password", "wrongpassword")
-                        .contentType(MediaType.APPLICATION_FORM_URLENCODED))
-                .andExpect(status().isForbidden());
+        // Act
+        ResponseEntity<LoginResponse> response = loginController.login(email, password);
+
+        // Assert
+        assertEquals(200, response.getStatusCodeValue());
+        assertEquals("USER", response.getBody().getRole());
+        assertEquals(1L, response.getBody().getUserId());
     }
 }
