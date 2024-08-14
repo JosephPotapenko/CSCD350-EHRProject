@@ -10,6 +10,10 @@ public class LoginResponse {
         this.userId = userId;
     }
 
+    public LoginResponse() {
+
+    }
+
     // Getters and Setters
     public String getRole() {
         return role;
